@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulario de Registro</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .form-container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .radio-group {
+        margin-top: 10px;
+      }
+      .radio-group label {
+        display: inline;
+        margin-right: 15px;
+        font-weight: normal;
+      }
+      input[type="submit"] {
+        background-color: #df7598;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      .required {
+        color: rgb(251, 70, 175);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Formulario de Registro</h1>
+      <form action="#" method="POST">
+        <div class="form-group">
+          <label for="nombre">Nombre <span class="required">*</span></label>
+          <input type="text" id="nombre" name="nombre" required />
+        </div>
+
+        <div class="form-group">
+          <label for="apellido">Apellido <span class="required">*</span></label>
+          <input type="text" id="apellido" name="apellido" required />
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_nacimiento"
+            >Fecha de Nacimiento <span class="required">*</span></label
+          >
+          <input
+            type="date"
+            id="fecha_nacimiento"
+            name="fecha_nacimiento"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Género <span class="required">*</span></label>
+          <div class="radio-group">
+            <input
+              type="radio"
+              id="masculino"
+              name="genero"
+              value="masculino"
+              required
+            />
+            <label for="masculino">Masculino</label>
+
+            <input type="radio" id="femenino" name="genero" value="femenino" />
+            <label for="femenino">Femenino</label>
+
+            <input type="radio" id="otro" name="genero" value="otro" />
+            <label for="otro">Otro</label>
+          </div>
+        </div>
+
+        <input type="submit" value="Registrarse" />
+      </form>
+    </div>
+  </body>
+</html>

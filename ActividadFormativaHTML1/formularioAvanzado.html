@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Formulario avanzado con diferentes tipos de campos</title>
+  <style type="text/css">
+    h1 {
+      text-align: center;
+    }
+
+    td {
+      padding: 0.2em 2em;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f9dae8;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <h1>Formulario con diferentes tipos de campos</h1>
+  <form action="" method="post" />
+
+  <p>Nombre: <input type="text" name="nombre" size="15" /></p>
+  <p></p>Apellidos: <input type="text" name="apellidos" size="40" /></p>
+  <p></p>E-mail: <input type="text" name="e-mail" size="40" /></p>
+  <p>contraseña: <input type="password" name="password" /><br>
+  <table>
+    <tr>
+      <td>
+        Sexo<br>
+        <input type="radio" name="sexo" value="V" /> Hombre<br>
+        <input type="radio" name="sexo" value="M" /> Mujer</p>
+        <input type="radio" name="sexo" value="M" /> Non binary</p>
+      </td>
+      <td>
+        Profesión<br>
+        <input type="radio" name="profesion" value="profesor" checked="checked">
+        Profesor<br>
+        <input type="radio" name="profesion" value="programador" />
+        Programador<br>
+        <input type="radio" name="profesion" value="diseñador" />
+        Diseñador gráfico<br>
+      </td>
+      <td>
+        Aficiones: <br />
+        <input type="checkbox" name="ciencia" /> Ciencia<br />
+        <input type="checkbox" name="libros" /> Libros<br />
+        <input type="checkbox" name="deportes" /> Deportes<br />
+      </td>
+      <td>
+        <p>Elija la herramienta de diseño web que prefiera:</p>
+        <select name="web">
+          <option>Herramienta web:</option>
+          <option value="adobe">Adobe Color CC</option>
+          <option value="google">Google Fonts</option>
+          <option value="mockflow">Mockflow</option>
+          <option value="notepad++">Notepad++</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <p>Indique sus comentarios: <br />
+    <textarea name="comentario" rows="5" cols="50">Comentario: </textarea>
+  <p><input type="submit" value="Enviar">
+    <input type="reset" value="Limpiar todo">
+  </p>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario ejemplo uso de diferentes inputs</title>
+    <style type="text/css">
+        h1 { text-align: center; }
+        td { padding: 0.2em 2em ; }
+        body {
+                    font-family: Arial, sans-serif;
+                    max-width: 600px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #ffdfdf;}
+        </style>
+</head>
+<body>  
+
+    <form action="https://www.w3schools.com/html/" method="post">
+        <p>Nombre: <input type="text" name="nombre" autofocus required/><br/><br/>
+        Contraseña: <input type="password" name="password" required/><br/><br/>
+        Correo Electrónico: <input type="email" name="correo" required/><br/><br/>
+        Fecha: <input type="date" name="Fecha"/><br/><br/>
+        Tiempo: <input type="time" name="tiempo"/><br/><br/>
+        Teléfono: <input type="tel" name="telefono"/><br/><br/>
+        ¿Qué Sistema operativo utilizas?:
+        <select name="sistema">
+                <option value="linux">GNU/Linux</option>
+                <option value="windows">Windows</option>
+                <option value="macos">MacOS</option>
+        </select>
+        <br/><br/>
+        ¿Que lenguaje de marcas conoces?
+        <input name="lenguaje_control" type="checkbox" value="html5" checked/>HTML5
+        <input name="lenguaje_control" type="checkbox" value="xhtml"/>XHTML
+        <input name="lenguaje_control" type="checkbox" value="xml"/>XML
+        <br/>
+        </p>
+         Comentarios:
+                 <textarea name="comentario" rows="6" cols="80"></textarea>
+         <br/><br/>
+        <input type="submit" value="Enviar"/>
+    </form>
+</body>
+</html>
+Formulario_normal.htm
+Mostrando Formulario_normal.htm.

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Credenciales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #df7598;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+        }
+
+        .password-requirements {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            padding-left: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #df7598;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .required {
+            color:  rgb(251, 70, 175);
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            input.type = input.type === 'password' ? 'text' : 'password';
+            const button = input.nextElementSibling;
+            button.textContent = input.type === 'password' ? '👁' : '👁️‍🗨️';
+        }
+
+        function validateForm() {
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm-password');
+            const errorMessage = document.getElementById('password-error');
+
+            if (password.value !== confirmPassword.value) {
+                errorMessage.style.display = 'block';
+                return false;
+            }
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Registro de Credenciales</h1>
+        <form onsubmit="return validateForm()" action="#" method="POST">
+            <div class="form-group">
+                <label for="username">Nombre de Usuario <span class="required">*</span></label>
+                <input type="text" id="username" name="username" required pattern="[a-zA-Z0-9_]{4,20}"
+                    title="El nombre de usuario debe tener entre 4 y 20 caracteres y solo puede contener letras, números y guiones bajos">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña <span class="required">*</span></label>
+                <div class="password-toggle">
+                    <input type="password" id="password" name="password" required
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                        title="La contraseña debe contener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número">
+                    <button type="button" onclick="togglePassword('password')">👁</button>
+                </div>
+                <div class="password-requirements">
+                    La contraseña debe contener al menos:
+                    <ul>
+                        <li>8 caracteres</li>
+                        <li>Una letra mayúscula</li>
+                        <li>Una letra minúscula</li>
+                        <li>Un número</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Contraseña <span class="required">*</span></label>
+                <div class="password-toggle">
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <button type="button" onclick="togglePassword('confirm-password')">👁</button>
+                </div>
+                <div id="password-error" class="error-message">Las contraseñas no coinciden</div>
+            </div>
+
+            <input type="submit" value="Crear Cuenta">
+        </form>
+    </div>
+</body>
+
+</html>
