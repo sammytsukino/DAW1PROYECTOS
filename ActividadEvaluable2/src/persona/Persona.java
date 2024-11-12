@@ -8,15 +8,17 @@ public class Persona {
     private int anyoDeNacimiento;
     //Ejercicio 2
     private char genero;
+    private String pais;
     
     
     
-    public Persona(String nombre, String apellidos, String dni, int anyoDeNacimiento, char genero) {
+    public Persona(String nombre, String apellidos, String dni, int anyoDeNacimiento, char genero, String pais) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.anyoDeNacimiento = anyoDeNacimiento;
         this.genero = genero;
+        this.pais = pais;
     }
     
     public void imprimirXPantalla() {
@@ -24,8 +26,9 @@ public class Persona {
         System.out.println("Nombre: " + nombre);
         System.out.println("Apellidos: " + apellidos);
         System.out.println("DNI: " + dni);
-        System.out.println("AÒo de nacimiento: " + anyoDeNacimiento);
-        System.out.println("GÈnero: " + genero);
+        System.out.println("A√±o de nacimiento: " + anyoDeNacimiento);
+        System.out.println("G√©nero: " + genero);
+        System.out.println("Pa√≠s: " + pais);
         System.out.println("------------------------");
     }
 }

@@ -2,8 +2,8 @@ package persona;
 
 public class PruebaPersona {
     public static void main(String[] args) {
-        Persona persona1 = new Persona("Miguel ¡ngel", "Conde DÌaz", "38678765Q", 1976, 'H');
-        Persona persona2 = new Persona("Daniel", "DÌaz PÈrez", "28898765M", 1990, 'H');
+        Persona persona1 = new Persona("Miguel √Ångel", "Conde D√≠az", "38678765Q", 1976, 'H', "Espa√±a");
+        Persona persona2 = new Persona("Daniel", "D√≠az P√©rez", "28898765M", 1990, 'H', "Espa√±a");
         
         System.out.println("Datos de las personas:");
         System.out.println("------------------------");

@@ -63,6 +63,7 @@ private void imprimir() {
     System.out.println("Fecha: " + fecha);
     System.out.println("Páginas: " + paginas);
     System.out.println("Calificación: " + calificacion);
+    System.out.println("-------------------------");
 }
 
 private boolean esLibroListo(){

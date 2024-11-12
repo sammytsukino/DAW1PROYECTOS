@@ -85,7 +85,7 @@ public class Coche {
 
 	public void acelerar(int incremento) {
 		if (velocidadActual + incremento > VELOCIDAD_MAXIMA) {
-			System.out.println("No se puede superar la velocidad m·xima de " + VELOCIDAD_MAXIMA + " km/h!");
+			System.out.println("No se puede superar la velocidad m√°xima de " + VELOCIDAD_MAXIMA + " km/h!");
 			velocidadActual = VELOCIDAD_MAXIMA;
 		} else {
 			velocidadActual += incremento;
@@ -113,7 +113,7 @@ public class Coche {
 			double tiempo = distancia / velocidadActual;
 			System.out.println("Tiempo estimado: " + tiempo + " horas");
 		} else {
-			System.out.println("El coche est· parado");
+			System.out.println("El coche est√° parado");
 		}
 	}
 
@@ -122,8 +122,8 @@ public class Coche {
 		System.out.println("El modelo del coche es: " + modelo);
 		System.out.println("El motor del coche es: " + motor);
 		System.out.println("El tipo de combustible del coche es: " + tipoCombustible);
-		System.out.println("El tipo de automÛvil del coche es: " + tipoAutomovil);
-		System.out.println("El n˙mero de puertas del coche es: " + numeroPuertas);
+		System.out.println("El tipo de autom√≥vil del coche es: " + tipoAutomovil);
+		System.out.println("El n√∫mero de puertas del coche es: " + numeroPuertas);
 		System.out.println("La cantidad de asientos del coche es: " + cantidadAsientos);
 		System.out.println("El color del coche es: " + color);
 		System.out.println("La velocidad actual del coche es: " + velocidadActual);
