@@ -1,4 +1,4 @@
-
+package vialactea;
 
 public class ViaLactea {
     private String nombre = null;
