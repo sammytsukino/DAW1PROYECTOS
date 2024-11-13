@@ -13,9 +13,11 @@ public class Bicicleta {
 		private boolean tieneLuces;
 		private tipo tipo;
 		private tamaño tamaño;
+		private static final int velocidadMaxima=25;
+		private int velocidad;
+		
 	
-	
-	public Bicicleta(String color, int pulgadas, String marca, boolean esElectrica, float precio, boolean tieneLuces, tipo tipo, tamaño tamaño) {
+	public Bicicleta(String color, int pulgadas, String marca, boolean esElectrica, float precio, boolean tieneLuces, tipo tipo, tamaño tamaño, int velocidad) {
 		
 		this.color=color;
 		this.pulgadas=pulgadas;
@@ -25,8 +27,13 @@ public class Bicicleta {
 		this.tieneLuces = tieneLuces;
 		this.tipo = tipo;
 		this.tamaño = tamaño;
+		this.velocidad = velocidad;
 	
 }
+	public int getVelocidad() {
+		return velocidad;
+	}
+	
 	public Bicicleta (String color) {
 		
 		this.color=color;
@@ -67,13 +74,12 @@ public class Bicicleta {
 	}
 	public void setPrecio(float precio) {
 		this.precio = precio;
+		System.out.println("El precio es " + precio);
 	}
 	public boolean isTieneLuces() {
 		return tieneLuces;
 	}
-	public void setTieneLuces(boolean tieneLuces) {
-		this.tieneLuces = tieneLuces;
-	}
+
 	public String getMarca() {
 		return marca;
 	}
@@ -89,6 +95,21 @@ public class Bicicleta {
 		}
 		return true;
 }
-	public void ponerLuces() {
-}
+	public boolean ponerLuces() {
+		if (tieneLuces) { 
+			System.out.println("Ya tiene luces"); 
+			return false;
+		} else {
+			this.tieneLuces=true;
+			return true;
+		}
+		}
+		
+		public void acelerar(int velocidad) {
+			if (velocidad <0) { System.out.println("No puedes acelerar en negativo"); }
+			if (this.velocidad+velocidad>=velocidadMaxima) { System.out.println("No puedes acelerar más!");
+			} else {
+				this.velocidad+=velocidad;
+			}
+		}
 }
