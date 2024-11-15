@@ -2,7 +2,7 @@ package libro;
 
 public class Libro {
 
-    public enum Genero { HISTORIA, COMEDIA, NOVELA, TERROR}
+public enum Genero { HISTORIA, COMEDIA, NOVELA, TERROR }
 private String escritor;
 private Genero genero;
 private int paginas;
