@@ -1,0 +1,9 @@
+Juan,Pérez,12345678A,2000
+María,López,98765432B,1990
+Pedro,García,34567890C,2001
+Ana,Martínez,67890123D,1998
+Luis,González,45678901E,1996
+Julia,Fernández,56789012F,2002
+David,Rodríguez,78901234G,1999
+Carmen,Sánchez,89012345H,2000
+José,Romero,90123456I,200
