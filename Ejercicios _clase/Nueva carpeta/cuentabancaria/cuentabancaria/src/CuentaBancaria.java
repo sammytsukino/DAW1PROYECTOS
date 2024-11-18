@@ -10,7 +10,7 @@ public class CuentaBancaria {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.numeroCuenta = numeroCuenta;
-        this.saldo = saldo;
+        this.saldo = 0;
         this.tipoCuenta = tipoCuenta;
     }
 
@@ -18,32 +18,16 @@ public class CuentaBancaria {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getApellidos() {
         return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public int getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
-
     public double getSaldo() {
         return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
     }
 
     public void consultarSaldo() {
@@ -60,7 +44,7 @@ public class CuentaBancaria {
     
     public void ingresar(double cantidadIngreso) { 
         saldo += cantidadIngreso;
-        System.out.println("Se ha ingresado " + cantidadIngreso + " al saldo de la cuenta " + numeroCuenta);
+        System.out.println("Se ha ingresado " + cantidadIngreso + " al saldo de la cuenta de " + nombre + " con número de cuenta: " + numeroCuenta);
         if (cantidadIngreso < 0) {
             System.out.println("La cantidad ingresada es negativa");
         }
@@ -73,7 +57,7 @@ public class CuentaBancaria {
             System.out.println("La cantidad a retirar es negativa");
         } else {
             saldo -= cantidadRetiro;
-            System.out.println("Se ha retirado " + cantidadRetiro + " del saldo de la cuenta " + numeroCuenta);
+            System.out.println("Se ha retirado " + cantidadRetiro + " al saldo de la cuenta de " + nombre + " con número de cuenta: " + numeroCuenta);
         }
     }
 
