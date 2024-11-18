@@ -1,0 +1,2 @@
+module paquete1 {
+}
