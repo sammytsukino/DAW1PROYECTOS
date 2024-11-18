@@ -4,11 +4,11 @@ public class CuentaBancaria {
     public enum TipoCuenta {AHORROS, CORRIENTE}
     private String nombre;
     private String apellidos;
-    private int numeroCuenta;
+    private String numeroCuenta;
     private double saldo=0;
     private TipoCuenta tipoCuenta;
     
-    public CuentaBancaria(String nombre, String apellidos, int numeroCuenta, double saldo, TipoCuenta tipoCuenta) {
+    public CuentaBancaria(String nombre, String apellidos, String numeroCuenta, double saldo, TipoCuenta tipoCuenta) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.numeroCuenta = numeroCuenta;
@@ -24,7 +24,7 @@ public class CuentaBancaria {
         return apellidos;
     }
 
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
@@ -33,7 +33,7 @@ public class CuentaBancaria {
     }
 
     public void consultarSaldo() {
-        System.out.println("Saldo de la cuenta " + numeroCuenta + " es de " + saldo);
+        System.out.println("Saldo de la cuenta " + numeroCuenta + " es de " + saldo + "€");
     }
     
     public TipoCuenta getTipoCuenta() {
@@ -64,7 +64,7 @@ public class CuentaBancaria {
     }
 
     public static void main(String[] args) {
-        CuentaBancaria cuenta1 = new CuentaBancaria("Miguel Ángel", "Conde Díaz", 12345678, 1000, TipoCuenta.AHORROS);
+        CuentaBancaria cuenta1 = new CuentaBancaria("Miguel Ángel", "Conde Díaz", "11111111111111111111", 1000, TipoCuenta.AHORROS);
 
         cuenta1.consultarSaldo();
         cuenta1.ingresar(500);
