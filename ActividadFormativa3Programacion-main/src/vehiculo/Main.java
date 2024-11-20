@@ -20,7 +20,7 @@ public class Main {
 		
 		velero.frenar(15);
 		
-		furgoneta.calcularRevolucionesMotor();
+		furgoneta.calcularRevolucionesMotor()
 		
 	}
 	
