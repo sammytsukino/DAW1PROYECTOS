@@ -1,4 +1,5 @@
-package Vehiculo.Vehiculo.src;
+package vehiculo;
+
 public class VehiculoTerrestre extends Vehiculo implements Motor {
     private int cantidadRuedas;
     private UsoVehiculo uso;

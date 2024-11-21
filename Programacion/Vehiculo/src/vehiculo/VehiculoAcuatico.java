@@ -1,4 +1,4 @@
-package Vehiculo.Vehiculo.src;
+package vehiculo;
 
 public class VehiculoAcuatico extends Vehiculo implements Vela {
     private TipoVehiculoAcuatico tipo;

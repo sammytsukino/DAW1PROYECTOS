@@ -1,5 +1,4 @@
-package Vehiculo.Vehiculo.src;
-
+package vehiculo;
 
 public interface Motor {
     int calcularRevolucionesMotor(int fuerza, int radio);

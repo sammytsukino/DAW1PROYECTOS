@@ -1,5 +1,4 @@
-package Vehiculo.Vehiculo.src;
-
+package vehiculo;
 
 public abstract class Vehiculo {
     protected int velocidadActual;

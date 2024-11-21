@@ -1,5 +1,4 @@
-package Vehiculo.Vehiculo.src;
-
+package vehiculo;
 
 public enum TipoVehiculoAcuatico {
     SUPERFICIE, 
