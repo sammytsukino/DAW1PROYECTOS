@@ -3,13 +3,13 @@ package vehiculo;
 public class SistemaVehiculos {
     public static void main(String[] args) {
 
-        VehiculoTerrestre furgoneta = new VehiculoTerrestre(4, UsoVehiculo.CIVIL);
+        VehiculoTerrestre furgoneta = new VehiculoTerrestre(3, UsoVehiculo.CIVIL);
         
 
         System.out.println("--- Furgoneta ---");
-        furgoneta.acelerar(50);
+        furgoneta.acelerar(20);
         furgoneta.imprimir();
-        int revoluciones = furgoneta.calcularRevolucionesMotor(5, 10);
+        int revoluciones = furgoneta.calcularRevolucionesMotor(6, 10);
         System.out.println("Revoluciones del motor: " + revoluciones);
         
 
@@ -17,7 +17,7 @@ public class SistemaVehiculos {
         
 
         System.out.println("\n--- Barco Velero ---");
-        barcoVelero.acelerar(40);
+        barcoVelero.acelerar(10);
         barcoVelero.recomendarVelocidad(85);
         barcoVelero.imprimir();
         barcoVelero.frenar(20);

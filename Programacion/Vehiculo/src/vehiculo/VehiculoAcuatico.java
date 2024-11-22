@@ -10,7 +10,7 @@ public class VehiculoAcuatico extends Vehiculo implements Vela {
         this.capacidadPasajeros = capacidadPasajeros;
     }
 
-    @Override
+
     public void recomendarVelocidad(int velocidadViento) {
         if (velocidadViento > 80 || velocidadViento < 10) {
             velocidadActual = 0;
@@ -18,14 +18,11 @@ public class VehiculoAcuatico extends Vehiculo implements Vela {
         }
     }
 
-    @Override
     public void imprimir() {
         super.imprimir();
         System.out.println("Tipo: " + tipo);
         System.out.println("Capacidad de pasajeros: " + capacidadPasajeros);
     }
-
-    // Getters
     public TipoVehiculoAcuatico getTipo() {
         return tipo;
     }
