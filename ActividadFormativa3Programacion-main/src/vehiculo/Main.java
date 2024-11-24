@@ -6,9 +6,19 @@ public class Main {
 		
 		VehiculoAcuatico velero = new VehiculoAcuatico(Tipo.SUPERFICIE, 7);
 
+		VehiculoTerrestre coche = new VehiculoTerrestre(4, Uso.CIVIL, 100, 20);
+
+		
+
 		furgoneta.imprimir();
 		
 		velero.imprimir();
+
+		coche.imprimir();
+
+		coche.acelerar(100);
+
+		coche.frenar(20);	
 		
 		furgoneta.acelerar(60);
 		
@@ -20,7 +30,7 @@ public class Main {
 		
 		velero.frenar(15);
 		
-		furgoneta.calcularRevolucionesMotor()
+		furgoneta.calcularRevolucionesMotor(15, 10);
 		
 	}
 	
