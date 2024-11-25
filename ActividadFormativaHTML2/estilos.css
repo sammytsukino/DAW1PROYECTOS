@@ -118,5 +118,10 @@ a:visited { color: yellow;
 a:hover { text-decoration: underline;
 }
 
-a:hover { color: brown
+a:hover { color: brown;
 }
+
+div { background-color: blue;
+}
+
+
