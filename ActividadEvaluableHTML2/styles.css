@@ -2,7 +2,10 @@ body {
     font-family: 'Verdana', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(45deg,#ff81d7, #ffffff, #3acc59);
+    background-image: url("https://i-p.rmcdn.net/659aab22043b7d0044a0aeee/4618759/image-36f78201-8473-4048-9506-b6b780afc07d.png?e=webp&nll=true");
+    background-repeat:repeat-x;
+    height:610px
+    margin: 20px;;
     color: #000000;
     line-height: 2;
     
