@@ -1,4 +1,3 @@
-/* General */
 body {
     font-family: 'Verdana', sans-serif;
     margin: 0;
@@ -6,22 +5,19 @@ body {
     background: linear-gradient(45deg,#ff81d7, #ffffff, #3acc59);
     color: #000000;
     line-height: 2;
+    
 }
 
-/* Contenedor Principal */
 .container {
     
     max-width: 800px;
     margin: 50px auto;
     padding: 20px 30px;
-    background-color: #fff;
-    border: 1px solid #000000;
-    border-radius;
-    
+    background-color: #ffffff;   
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    
 }
 
-/* Título */
 .container h1 {
     text-align: center;
     font-size: 32px;
@@ -30,38 +26,35 @@ body {
 }
 
 .container p {
-    text-align: center;
-    color: #888;
-    margin-bottom: 30px;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 0;
+    font-weight: bold;
 }
 
-/* Fieldset */
 fieldset {
 
     margin-bottom: 20px;
     padding: 15px;
 }
 
-/* Legend */
 legend {
-    text-align: center;
-    
     padding: 0 10px;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     color: #000000;
+    text-align: right;
+    
 }
 
-/* Grupos de Formulario */
 .form-group {
     margin-bottom: 20px;
+    
 }
 
-/* Etiquetas */
 label {
-    text-align: r;
+    text-align: ;
     text-transform: uppercase;
-
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
@@ -69,19 +62,17 @@ label {
 }
 
 
-/* Entradas de Texto */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="number"],
 textarea,
 select {
-    width: 100%;
+    width: 97%;
     padding: 10px;
     font-size: 16px;
     border: 1px solid rgb(0, 0, 0)
-    border-radius: 0px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     transition: border-color 0.3s ease;
 }
 
@@ -93,12 +84,11 @@ select:focus {
     outline: none;
 }
 
-/* Textarea */
 textarea {
     resize: none;
 }
 
-/* Botón */
+
 .btn {
     display: block;
     width: 100%;
@@ -108,7 +98,8 @@ textarea {
     color: #fff;
     background: linear-gradient(200deg, #ee7aa9, #ffc9df);
     border: none;
-    border-radius: 8px;
+    border-radius:100px;
+
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -117,7 +108,13 @@ textarea {
     background: linear-gradient(200deg, #beffcc, #3acc59);
 }
 
-/* Estilo Responsivo */
+img {
+    display: block; /* Asegura que el padding funcione como se espera */
+    margin: 0 auto; /* Centra la imagen si es necesario */
+    padding-top: 20px; /* Espaciado superior */
+    padding-bottom: 20px; /* Espaciado inferior */
+}
+/* Estilo Responsivo 
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -126,4 +123,4 @@ textarea {
     .btn {
         font-size: 16px;
     }
-}
+}*/

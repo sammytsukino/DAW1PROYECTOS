@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
+    <!-- Enlace a Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tu archivo CSS -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, p, legend, label, button {
+            font-weight: 1000; 
+        }
+        input, select, textarea {
+            font-weight: 300;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Contacto</h1>
-        <p>Estamos encantados de saber de ti. Completa el formulario y cuéntanos sobre tu proyecto.</p>
+        <img src="https://i-p.rmcdn.net/659aab22043b7d0044a0aeee/4618759/image-3c815deb-fceb-4ddf-b04d-f65bbe5e408d.png?e=webp&nll=true&cX=1&cY=0&cW=1038&cH=330" alt="header Sammy Cabello" width="100%">
+ 
+        <p>Por favor, rellena todos los campos ***</p>
         <form action="#" method="post">
-            <!-- Información Personal -->
             <fieldset>
-                <legend>Información Personal</legend>
+                <legend>INFORMACIÓN PERSONAL</legend>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
@@ -24,35 +38,33 @@
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono">
+                    <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono" required>
                 </div>
             </fieldset>
-            
-            <!-- Proyecto -->
             <fieldset>
-                <legend>Sobre tu Proyecto</legend>
+                <legend>SOBRE TU PROYECTO</legend>
                 <div class="form-group">
-                    <label for="servicios">¿Qué servicios necesitas?</label>
+                    <label for="servicios">¿Qué necesitas</label>
                     <select id="servicios" name="servicios" required>
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="diseño">Diseño Gráfico</option>
+                        <option value="branding">Branding</option>
                         <option value="editorial">Diseño Editorial</option>
                         <option value="web">Desarrollo Web</option>
-                        <option value="marketing">Estrategia de Marketing</option>
+                        <option value="maqueta">Maquetación</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="presupuesto">Presupuesto Estimado</label>
-                    <input type="number" id="presupuesto" name="presupuesto" placeholder="Introduce tu presupuesto en €">
+                    <input type="number" id="presupuesto" name="presupuesto" placeholder="Introduce tu presupuesto en €" required>
                 </div>
                 <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos más sobre tu idea o proyecto..." rows="5" required></textarea>
+                    <label for="mensaje">¿Algo más?</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntame más sobre tu idea, proyecto... ¡o sobre ti!" rows="5" required></textarea>
                 </div>
             </fieldset>
             
-            <!-- Botón de Enviar -->
             <button type="submit" class="btn">Enviar</button>
+            <img src="https://i-p.rmcdn.net/659aab22043b7d0044a0aeee/4618759/image-c275430b-c5cd-44c7-9981-cc6fd5ad093d.png?e=webp&nll=true" alt="footer" width="100%" >
         </form>
     </div>
 </body>
