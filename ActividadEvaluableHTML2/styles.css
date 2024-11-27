@@ -117,13 +117,3 @@ img {
     padding-top: 20px; /* Espaciado superior */
     padding-bottom: 20px; /* Espaciado inferior */
 }
-/* Estilo Responsivo 
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    .btn {
-        font-size: 16px;
-    }
-}*/
