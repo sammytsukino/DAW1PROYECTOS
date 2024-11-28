@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>Noticias K-Pop</title>
+        <link>http://https://www.allkpop.com/</link>
+        <description>Las últimas noticias sobre grupos femeninos de K-Pop</description>
+        <language>es</language>
+        <pubDate>Tue, 28 Nov 2024 12:00:00 GMT</pubDate>
+        
+        <item>
+            <title>NewJeans lanza su nuevo álbum</title>
+            <link>http://https://www.allkpop.com/</link>
+            <description>El grupo NewJeans ha lanzado "Get Up", batiendo récords de streaming.</description>
+            <pubDate>Mon, 27 Nov 2024 10:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+            <title>BLACKPINK anuncia gira de despedida</title>
+            <link>http://https://www.allkpop.com/</link>
+            <description>El icónico grupo BLACKPINK anuncia una gira de despedida mundial.</description>
+            <pubDate>Mon, 27 Nov 2024 09:00:00 GMT</pubDate>
+        </item>
+
+        <item>
+            <title>IVE alcanza el número 1 en las listas</title>
+            <link>http://https://www.allkpop.com/</link>
+            <description>IVE celebra el éxito de su sencillo "Either Way".</description>
+            <pubDate>Sun, 26 Nov 2024 15:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>
