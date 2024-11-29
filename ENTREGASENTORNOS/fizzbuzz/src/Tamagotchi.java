@@ -3,10 +3,10 @@ public class Tamagotchi {
     private int energy = 4;
     private int mood = 4;
 
-    public Tamagotchi(int hunger, int energy, int mood) {
-        this.hunger = hunger;
-        this.energy = energy;
-        this.mood = mood;
+    public Tamagotchi() {
+        this.hunger = 4;
+        this.energy = 4;
+        this.mood = 4;
     }
 
     public int getHunger() {
@@ -29,7 +29,7 @@ public class Tamagotchi {
         } else if (energy == 0) {
             System.out.println("(-_-) zZZ");
         } else if (mood <= 2) {
-            System.out.println("o_o");
+            System.out.println("ò_ó");
         } else {
             System.out.println(":-|");
         }
@@ -53,7 +53,7 @@ public class Tamagotchi {
     }
 
     public static void main(String[] args) {
-        Tamagotchi tamagotchi = new Tamagotchi(4, 4,4);
+        Tamagotchi tamagotchi = new Tamagotchi();
 
         System.out.println("¿Cómo está nuestro Tamagotchi?");
         tamagotchi.showStatus();
