@@ -9,9 +9,9 @@ body {
 
 #page {
     display: grid;
-    grid-template-columns: 3fr 1fr;ç
-    grid-template-rows: auto auto auto auto;ç
-    gap: 30;ç
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 30;
     max-width: 1200px;
     margin: 0 auto;
 }
