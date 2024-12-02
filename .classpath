@@ -9,5 +9,6 @@
 	<classpathentry kind="src" path="EJERCICIOS JAVA 2"/>
 	<classpathentry kind="src" path="Sandbox/ViaLactea/src"/>
 	<classpathentry kind="src" path="Programacion/Vehiculo/src/vehiculo"/>
+	<classpathentry kind="src" path="ENTREGASENTORNOS/fizzbuzz/src"/>
 	<classpathentry kind="output" path="ActividadEvaluable2/bin"/>
 </classpath>
