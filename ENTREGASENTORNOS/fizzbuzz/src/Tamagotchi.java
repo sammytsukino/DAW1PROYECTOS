@@ -57,7 +57,7 @@ public class Tamagotchi {
 
         System.out.println("¿Cómo está nuestro Tamagotchi?");
         tamagotchi.showStatus();
-        System.out.println("¿Jugamos");
+        System.out.println("¿Jugamos?");
         tamagotchi.play();
         System.out.println("Vamos a comer");
         tamagotchi.eat();
