@@ -10,5 +10,7 @@
 	<classpathentry kind="src" path="Sandbox/ViaLactea/src"/>
 	<classpathentry kind="src" path="Programacion/Vehiculo/src/vehiculo"/>
 	<classpathentry kind="src" path="ENTREGASENTORNOS/fizzbuzz/src"/>
+	<classpathentry excluding="fizzbuzz/src/" kind="src" path="ENTREGASENTORNOS"/>
+	<classpathentry kind="src" path="ENTREGASPROGRAMACION"/>
 	<classpathentry kind="output" path="ActividadEvaluable2/bin"/>
 </classpath>
