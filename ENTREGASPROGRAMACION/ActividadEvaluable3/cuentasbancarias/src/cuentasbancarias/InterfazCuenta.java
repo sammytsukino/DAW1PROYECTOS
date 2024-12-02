@@ -1,7 +1,7 @@
 package cuentasbancarias;
 
 /**
- * Interface que define el contrato para cuentas bancarias.
+ * Interfaz que define el contrato para cuentas bancarias.
  * Especifica los métodos que deben implementar todas las cuentas.
  */
 public interface InterfazCuenta {
