@@ -13,7 +13,7 @@ public class Cuenta {
     protected float comisionMensual;
 
     /**
-     * Constructor de la cuenta bancaria.
+     * Constructor de la cuenta bancaria. Valores inicializados según el enunciado de la actividad.
      */
     public Cuenta(float saldoInicial, float tasaAnual) {
         this.saldo = saldoInicial;
@@ -24,7 +24,7 @@ public class Cuenta {
     }
 
     /**
-     * Método para consignar dinero en la cuenta.
+     * Método para meter dinero en la cuenta. Aumenta el número de consignaciones.
      */
     public void consignar(float cantidad) {
         saldo += cantidad;
@@ -32,7 +32,7 @@ public class Cuenta {
     }
 
     /**
-     * Método para retirar dinero de la cuenta.
+     * Método para retirar dinero de la cuenta. Aumenta el número de retiros.
      * 
      */
     public boolean retirar(float cantidad) {
@@ -45,7 +45,7 @@ public class Cuenta {
     }
 
     /**
-     * Calcula y añade el interés mensual al saldo.
+     * Calcula y añade el interés mensual al saldo. 
      */
     public void calcularInterés() {
         float tasaMensual = tasaAnual / 12;
