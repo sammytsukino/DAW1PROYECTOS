@@ -22,6 +22,11 @@ public class ArrayEjemplo {
         for (int i=0; i<7;i++) {
             System.out.println(primes[i]);
         }
+
+        // For extendido - for each
+        for (String day : weekDay) {
+            System.out.println(day);
+        }
     }
 }
 
