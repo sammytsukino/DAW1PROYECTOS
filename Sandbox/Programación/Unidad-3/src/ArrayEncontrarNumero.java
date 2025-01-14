@@ -9,7 +9,5 @@ public class ArrayEncontrarNumero {
                 System.out.println("El numero " + numero + " se encuentra en la posicion " + i);
             }
         }
-
 }
-
 }
