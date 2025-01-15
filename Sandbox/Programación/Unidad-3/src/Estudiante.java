@@ -84,7 +84,6 @@ public class Estudiante {
         for (int i = 0; i < numeroEstudiantes; i++) {
             totalEdad += estudiantes[i].getEdad();
         }
-        
         System.out.println("La media de las edades de los estudiantes es: " + totalEdad / numeroEstudiantes);
     }
 
