@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE lista_coches [
+    <!ELEMENT lista_coches (coche+)>
+    <!ELEMENT coche (modelo, potencia?, cilindrada?, plazas?, gasolina?)>
+    <!ELEMENT modelo (#PCDATA)>
+    <!ELEMENT potencia (#PCDATA)>
+    <!ELEMENT cilindrada (#PCDATA)>
+    <!ELEMENT plazas (#PCDATA)>
+    <!ELEMENT gasolina (#PCDATA)>
+]>
+<lista_coches>
+    <coche>
+        <modelo> BMW 530 </modelo>
+        <potencia> 232c.v.</potencia>
+        <cilindrada> 3000 c.c</cilindrada>
+        <plazas> 3000 c.c</plazas>
+        <gasolina> 3000 c.c</gasolina>
+    </coche>
+</lista_coches>
