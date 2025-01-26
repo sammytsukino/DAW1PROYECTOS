@@ -1,0 +1,7 @@
+<!ELEMENT catalogo (pelicula+)>
+<!ELEMENT pelicula (titulo, director, año, genero)>
+<!ATTLIST pelicula id ID #REQUIRED>
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT director (#PCDATA)>
+<!ELEMENT año (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
