@@ -7,4 +7,3 @@
 <!ELEMENT autor (#PCDATA)>
 <!ELEMENT editorial (#PCDATA)>
 ]>
-
