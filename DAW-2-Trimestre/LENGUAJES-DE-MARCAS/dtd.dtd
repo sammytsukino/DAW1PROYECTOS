@@ -1,0 +1,22 @@
+<!ELEMENT empleados (empleado+)>
+<!ELEMENT empleado (nombre, apellido, edad, genero, puesto, departamento, salario, fechaContratacion, direccion, contacto, nivelEstudios, experienciaPrevia, nacionalidad, estadoCivil, numeroHijos, horarios, habilidades, idiomas)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT apellido (#PCDATA)>
+<!ELEMENT edad (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT puesto (#PCDATA)>
+<!ELEMENT departamento (#PCDATA)>
+<!ELEMENT salario (#PCDATA)>
+<!ELEMENT fechaContratacion (#PCDATA)>
+<!ELEMENT direccion (#PCDATA)>
+<!ELEMENT contacto (telefono, correoElectronico)>
+<!ELEMENT telefono (#PCDATA)>
+<!ELEMENT correoElectronico (#PCDATA)>
+<!ELEMENT nivelEstudios (#PCDATA)>
+<!ELEMENT experienciaPrevia (#PCDATA)>
+<!ELEMENT nacionalidad (#PCDATA)>
+<!ELEMENT estadoCivil (#PCDATA)>
+<!ELEMENT numeroHijos (#PCDATA)>
+<!ELEMENT horarios (#PCDATA)>
+<!ELEMENT habilidades (#PCDATA)>
+<!ELEMENT idiomas (#PCDATA)>

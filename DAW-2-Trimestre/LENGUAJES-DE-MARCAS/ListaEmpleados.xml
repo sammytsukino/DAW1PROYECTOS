@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE empresa [
+<!ELEMENT empresa (departamento+)>
+<!ELEMENT departamento (nombreDep, empleados)>
+<!ELEMENT nombreDep (#PCDATA)>
+<!ELEMENT empleados (empleado+)>
+<!ELEMENT empleado (nombre, apellidos, edad, genero?, puesto, salario, 
+    fecha_contratacion, direccion, telefono?, correo_electronico?, estudio, experiencia, 
+    nacionalidad, estado_civil, num_hijos, horarios, habilidades, idiomas)>
+<!ATTLIST empleado id ID #REQUIRED>
+
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT apellidos (#PCDATA)>
+<!ELEMENT edad (#PCDATA)>
+<!ELEMENT genero (#PCDATA)>
+<!ELEMENT puesto (#PCDATA)>
+<!ELEMENT salario (#PCDATA)>
+<!ELEMENT fecha_contratacion (#PCDATA)>
+<!ELEMENT direccion (#PCDATA)>
+<!ELEMENT telefono (#PCDATA)>
+<!ELEMENT correo_electronico (#PCDATA)>
+<!ELEMENT estudio (#PCDATA)>
+<!ELEMENT experiencia (#PCDATA)>
+<!ELEMENT nacionalidad (#PCDATA)>
+<!ELEMENT estado_civil (#PCDATA)>
+<!ELEMENT num_hijos (#PCDATA)>
+<!ELEMENT horarios (#PCDATA)>
+<!ELEMENT habilidades (#PCDATA)>
+<!ELEMENT idiomas (#PCDATA)>
+]>
+
+<empresa>
+    <departamento>
+        <nombreDep>IT</nombreDep>
+        <empleados>
+            <empleado id="E001">
+                <nombre>Juan</nombre>
+                <apellidos>Pérez</apellidos>
+                <edad>30</edad>
+                <genero>Masculino</genero>
+                <puesto>Desarrollador</puesto>
+                <salario>30000</salario>
+                <fecha_contratacion>2020-01-16</fecha_contratacion>
+                <direccion>Calle Falsa 123</direccion>
+                <telefono>123456789</telefono>
+                <correo_electronico>correo@falso.com</correo_electronico>
+                <estudio>Ingeniería Informática</estudio>
+                <experiencia>5 años</experiencia>
+                <nacionalidad>Española</nacionalidad>
+                <estado_civil>Soltero</estado_civil>
+                <num_hijos>0</num_hijos>
+                <horarios>9-18</horarios>
+                <habilidades>Java, SQL, XML</habilidades>
+                <idiomas>Español, Inglés</idiomas>
+            </empleado>
+        </empleados>
+    </departamento>
+
+    <departamento>
+        <nombreDep>Diseño</nombreDep>
+        <empleados>
+            <empleado id="E002">
+                <nombre>Donaldo</nombre>
+                <apellidos>Trunks</apellidos>
+                <edad>33</edad>
+                <genero>Masculino</genero>
+                <puesto>Diseñador</puesto>
+                <salario>30000</salario>
+                <fecha_contratacion>2020-01-15</fecha_contratacion>
+                <direccion>Calle Falsa 124</direccion>
+                <telefono>123456739</telefono>
+                <correo_electronico>correo@falso2.com</correo_electronico>
+                <estudio>Diseño Gráfico</estudio>
+                <experiencia>10 años</experiencia>
+                <nacionalidad>India</nacionalidad>
+                <estado_civil>Casado</estado_civil>
+                <num_hijos>6</num_hijos>
+                <horarios>9-18</horarios>
+                <habilidades>Photoshop, Illustrator, UX/UI
+                </habilidades>
+                <idiomas>Español, Inglés, Árabe, Rumano, Esloveno</idiomas>
+            </empleado>
+        </empleados>
+    </departamento>
+</empresa>
