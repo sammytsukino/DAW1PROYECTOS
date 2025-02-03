@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE empleados SYSTEM "empleados.dtd">
+<empleados>
+    <empleado>
+        <nombre>Juan</nombre>
+        <apellido>Pérez</apellido>
+        <edad>30</edad>
+        <genero>Masculino</genero>
+        <puesto>Diseñador</puesto>
+        <departamento>Diseño</departamento>
+        <salario>30000</salario>
+        <fechaContratacion>2020-01-15</fechaContratacion>
+        <direccion>Calle Falsa 123</direccion>
+        <contacto>
+            <telefono>123456789</telefono>
+            <correoElectronico>juan.perez@example.com</correoElectronico>
+        </contacto>
+        <nivelEstudios>Licenciatura</nivelEstudios>
+        <experienciaPrevia>5 años</experienciaPrevia>
+        <nacionalidad>Mexicana</nacionalidad>
+        <estadoCivil>Soltero</estadoCivil>
+        <numeroHijos>0</numeroHijos>
+        <horarios>9:00 - 18:00</horarios>
+        <habilidades>Photoshop, Illustrator</habilidades>
+        <idiomas>Español, Inglés</idiomas>
+    </empleado>
+    <!-- Añadir más empleados aquí -->
+</empleados>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE libreria [
+<!ELEMENT libreria (libro, editorial?, encuadernacion, ISBN?)>
+<!ELEMENT libro (#PCDATA)>
+<!ELEMENT editorial (#PCDATA)>
+<!ELEMENT encuadernacion EMPTY>
+<!ATTLIST encuadernacion 
+    tipo (alternativa1 | alternativa2 | alternativa3) #REQUIRED>
+<!ELEMENT ISBN (#PCDATA)>
+]>
+<libreria>
+    <libro>El nombre del viento</libro>
+    <editorial>Plaza y Janés</editorial>
+    <encuadernacion tipo="alternativa1" />
+    <ISBN>978-84-08-09408-3</ISBN>
+</libreria>

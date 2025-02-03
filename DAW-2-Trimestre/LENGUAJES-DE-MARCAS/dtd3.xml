@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Biblioteca [
+<!ELEMENT Lista_libros (libro, titulo, paginas, autor, editorial)>
+<!ELEMENT libro (#PCDATA)>
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT paginas (#PCDATA)>
+<!ELEMENT autor (#PCDATA)>
+<!ELEMENT editorial (#PCDATA)>
+]>
