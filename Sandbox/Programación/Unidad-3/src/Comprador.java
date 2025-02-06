@@ -78,9 +78,6 @@ public Comprador (String nombre, String apellidos) {
         
         Comprador comprador = new Comprador (a, b);
         comprador.comprobarEdad(d);
-        
-
 
     }
-
 }
