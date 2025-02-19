@@ -7,13 +7,15 @@ public class Pelicula {
     private String genero;
     private int duracion;
     private int fecha;
+    private int calificacion;
 
-    public Pelicula(String titulo, String director, String genero, int duracion, int fecha) {
+    public Pelicula(String titulo, String director, String genero, int duracion, int fecha, int calificacion) {
         this.titulo = titulo;
         this.director = director;
         this.genero = genero;
         this.duracion = duracion;
         this.fecha = fecha;
+        this.calificacion = calificacion;
     }
 
     public String getTitulo() {
@@ -56,15 +58,51 @@ public class Pelicula {
         this.fecha = fecha;
     }
 
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public boolean esPeliculaEpica() {
+        if (this.getDuracion() >= 180) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esSimilar(Pelicula pelicula){
+        if (pelicula.getGenero()==genero && pelicula.calcularValoracion()==this.calcularValoracion()){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String calcularValoracion() {
+        if (this.calificacion >= 0.0 && this.calificacion <= 3.0) {
+            return "Muy malo";
+        } else if (this.calificacion > 3.0 && this.calificacion <= 5.0) {
+            return "Malo";
+        } else if (this.calificacion > 5.0 && this.calificacion <= 6.0) {
+            return "Regular";
+        } else if (this.calificacion > 6.0 && this.calificacion <= 8.0) {
+            return "Buena";
+        } else {
+            return this.calificacion > 8.0 && this.calificacion <= 10.0 ? "Magnífica" : "Valoración no válida";
+        }
+    }
+
     @Override
     public String toString() {
         return "Pelicula [titulo=" + titulo + ", director=" + director + ", genero=" + genero + ", duracion=" + duracion
-                + ", fecha=" + fecha + ", getTitulo()=" + getTitulo() + ", getDirector()=" + getDirector()
-                + ", getGenero()=" + getGenero() + ", getDuracion()=" + getDuracion() + ", getFecha()=" + getFecha()
-                + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
-                + "]";
+                + ", fecha=" + fecha + ", calificacion=" + calificacion + ", esPeliculaEpica()=" + esPeliculaEpica()
+                + ", calcularValoracion()=" + calcularValoracion() + ", esSimilar()=" + esSimilar(null) + "]";
     }
 
-    
 
-}
+    }
+

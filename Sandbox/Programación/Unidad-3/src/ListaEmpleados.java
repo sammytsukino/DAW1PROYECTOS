@@ -28,8 +28,6 @@ public class ListaEmpleados {
             System.out.println(empleado.toString());
         }
 
-
-
         /*System.out.println(e1.getEmail());
 
         e2.setEmail(e2.getEmail());
