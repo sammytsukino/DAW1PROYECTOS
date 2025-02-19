@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASENTORNOS/debug/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASENTORNOS/fizzbuzz/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/ActividadEvaluable2/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/ActividadEvaluable3/animales/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/ActividadEvaluable3/cuentasbancarias/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/ActividadFormativa3Programacion-main/src"/>
+	<classpathentry excluding="Fichero af3/src/|cuentabancaria/src/|ejerciciodebug/|Forma/src/|Vehiculo/Vehiculo/src/|debug/" kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/cuentabancaria/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/debug"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/ejerciciodebug"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/Fichero af3/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/Forma/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/Ejercicios _clase/Vehiculo/Vehiculo/src"/>
+	<classpathentry kind="src" path="DAW-1-Trimestre/ENTREGASPROGRAMACION/EJERCICIOS _JAVA_2"/>
+	<classpathentry kind="src" path="Sandbox/Calificaciones/Calificaciones/src"/>
+	<classpathentry kind="src" path="Sandbox/Programación/Unidad-3/src"/>
+	<classpathentry kind="src" path="Sandbox/ViaLactea/src"/>
+	<classpathentry kind="output" path="DAW-1-Trimestre/ENTREGASENTORNOS/debug/bin"/>
+</classpath>
