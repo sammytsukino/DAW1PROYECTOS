@@ -5,39 +5,25 @@ public class Inventario {
 
     private ArrayList<Producto> productos = new ArrayList<>();
 
-    public static void main(String[] args) {
-        Inventario inventario = new Inventario();
-        inventario.agregarProducto(new Scanner(System.in));
-    }
-
-    Scanner scanner = new Scanner(System.in);
-
     public void agregarProducto(Scanner scanner) {
-
-        String nombre;
-        double precio = 0.0;
         System.out.print("Ingrese el nombre del producto: ");
-        nombre = scanner.nextLine();
+        String nombre = scanner.nextLine();
 
-        String precioString;
-        String regex = "\\d+(\\.\\d{1,2})?";
-
-        System.out.println("Ingrese el precio del producto: ");
-        precioString = scanner.nextLine();
-
-        while (!precioString.matches(regex)) {
-            System.out.println("Ingrese un precio valido: ");
-            precioString = scanner.nextLine();
-        }
-
-        try {
-            precio = Double.parseDouble(precioString);
-        } catch (NumberFormatException e) {
-            System.out.println("Ingrese un precio valido: ");
+        System.out.print("Ingrese el precio del producto: ");
+        double precio = 0.0;
+        while (true) {
+            String precioString = scanner.nextLine();
+            try {
+                precio = Double.parseDouble(precioString);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Precio no válido. Por favor, ingrese un número.");
+            }
         }
 
         Producto producto = new Producto(nombre, precio);
         productos.add(producto);
+        System.out.println("Producto agregado.");
     }
 
     public void mostrarProductos() {
@@ -47,50 +33,49 @@ public class Inventario {
     }
 
     public void buscarProducto(String nombreBusqueda) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese el nombre del producto a buscar: ");
-        nombreBusqueda = scanner.nextLine();
         boolean encontrado = false;
         for (Producto producto : productos) {
             if (producto.getNombre().equalsIgnoreCase(nombreBusqueda)) {
+                System.out.println("Producto encontrado: " + producto);
                 encontrado = true;
                 break;
             }
         }
 
-        if (encontrado) {
-            System.out.println("El nombre " + nombreBusqueda + " se encuentra en la lista.");
-        } else {
-            System.out.println("El nombre " + nombreBusqueda + " no se encuentra en la lista.");
+        if (!encontrado) {
+            System.out.println("El producto " + nombreBusqueda + " no se encuentra en la lista.");
         }
-        scanner.close();
     }
 
-    public void modificarPrecio(double precio){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese el nuevo precio: ");
-        precio = scanner.nextDouble();
-        scanner.close();
-        System.out.println("El nuevo precio es:" + precio);
+    public void modificarPrecio(Scanner scanner, String nombreProducto, double nuevoPrecio) {
+        boolean encontrado = false;
+        for (Producto producto : productos) {
+            if (producto.getNombre().equalsIgnoreCase(nombreProducto)) {
+                producto.setPrecio(nuevoPrecio);
+                System.out.println("El precio del producto " + nombreProducto + " ha sido modificado a " + nuevoPrecio);
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("El producto " + nombreProducto + " no se encuentra en la lista.");
+        }
     }
 
     public void eliminarProducto(String nombreEliminado) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Ingrese el nombre del producto a buscar: ");
-        nombreEliminado = scanner.nextLine();
-        boolean encontrado = false;
+        boolean eliminado = false;
         for (Producto producto : productos) {
             if (producto.getNombre().equalsIgnoreCase(nombreEliminado)) {
-                encontrado = true;
+                productos.remove(producto);
+                System.out.println("El producto " + nombreEliminado + " ha sido eliminado.");
+                eliminado = true;
                 break;
             }
         }
-        if (encontrado) {
-            System.out.println("El nombre " + nombreEliminado + " se encuentra en la lista.");
-        } else {
-            System.out.println("El nombre " + nombreEliminado + " no se encuentra en la lista.");
-        }
-        scanner.close();
-    }
 
+        if (!eliminado) {
+            System.out.println("El producto " + nombreEliminado + " no se encuentra en la lista.");
+        }
     }
+}
