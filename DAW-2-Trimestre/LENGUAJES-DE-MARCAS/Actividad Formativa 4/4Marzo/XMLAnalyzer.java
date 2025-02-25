@@ -20,6 +20,7 @@ public class XMLAnalyzer {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
+            // Se normaliza el documento para asegurar una estructura consistente.
             doc.getDocumentElement().normalize();
             
             // Mostrar el elemento raíz del XML
