@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vampiros>
+    <vampiro anio="1897" lugar="Transilvania" nombre="Drácula"/>
+    <vampiro anio="1922" lugar="Alemania" nombre="Nosferatu"/>
+    <vampiro anio="1932" lugar="Alemania" nombre="Grindel"/>
+    <vampiro anio="1902" lugar="Finlandia" nombre="Mendel"/>
+    <vampiro anio="1729" lugar="Albania" nombre="Humire"/>
+</vampiros>

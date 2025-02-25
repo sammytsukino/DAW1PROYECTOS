@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vampiros>
+        
+    <vampiro anio="1899" lugar="Bulgaria" nombre="Drácula"/>
+        
+    <vampiro anio="1899" lugar="Bulgaria" nombre="Nosferatu"/>
+        
+    <vampiro anio="1899" lugar="Bulgaria" nombre="Grindel"/>
+        
+    <vampiro anio="1899" lugar="Bulgaria" nombre="Mendel"/>
+        
+
+</vampiros>
