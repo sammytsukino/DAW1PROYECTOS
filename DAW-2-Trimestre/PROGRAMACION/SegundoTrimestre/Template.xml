@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <!-- Estructura básica de una clase -->
+    <template name="ClaseBase" description="Crea una clase con estructura básica" context="java" auto-insert="true">
+        public class ${className} {
+            private ${type} ${variable};
+            
+            public ${className}() {
+            }
+            
+            public ${className}(${type} ${variable}) {
+                this.${variable} = ${variable};
+            }
+            
+            public ${type} get${variable}() {
+                return ${variable};
+            }
+            
+            public void set${variable}(${type} ${variable}) {
+                this.${variable} = ${variable};
+            }
+            
+            ${cursor}
+        }
+    </template>
+
+    <!-- Declaración de variables -->
+    <template name="DeclareVariable" description="Declarar una variable" context="java" auto-insert="true">
+        ${type} ${variable} = ${value};
+    </template>
+    
+    <!-- Método main con Scanner -->
+    <template name="MainScanner" description="Método main con Scanner" context="java" auto-insert="true">
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            ${cursor}
+            scanner.close();
+        }
+    </template>
+
+    <!-- Bucles -->
+    <template name="ForLoop" description="Bucle for" context="java" auto-insert="true">
+        for (int i = 0; i &lt; ${limit}; i++) {
+            ${cursor}
+        }
+    </template>
+    
+    <template name="WhileLoop" description="Bucle while" context="java" auto-insert="true">
+        while (${condition}) {
+            ${cursor}
+        }
+    </template>
+    
+    <template name="DoWhileLoop" description="Bucle do-while" context="java" auto-insert="true">
+        do {
+            ${cursor}
+        } while (${condition});
+    </template>
+    
+    <!-- Condicionales -->
+    <template name="IfStatement" description="Condicional if" context="java" auto-insert="true">
+        if (${condition}) {
+            ${cursor}
+        }
+    </template>
+
+    <template name="IfElseStatement" description="Condicional if-else" context="java" auto-insert="true">
+        if (${condition}) {
+            ${cursor}
+        } else {
+            
+        }
+    </template>
+
+    <template name="TernaryOperator" description="Operador ternario" context="java" auto-insert="true">
+        ${variable} = (${condition}) ? ${value1} : ${value2};
+    </template>
+    
+    <!-- Arrays y ArrayLists -->
+    <template name="ArrayDeclaration" description="Declaración de un array" context="java" auto-insert="true">
+        ${type}[] ${name} = new ${type}[${size}];
+    </template>
+    
+    <template name="ArrayListDeclaration" description="Declaración de un ArrayList" context="java" auto-insert="true">
+        ArrayList&lt;${type}&gt; ${name} = new ArrayList&lt;&gt;();
+    </template>
+    
+    <!-- Métodos de Arrays -->
+    <template name="FillArray" description="Rellenar un array con un bucle for" context="java" auto-insert="true">
+        for (int i = 0; i &lt; ${array}.length; i++) {
+            ${array}[i] = ${value};
+        }
+    </template>
+    
+    <template name="Fill2DArray" description="Rellenar un array bidimensional" context="java" auto-insert="true">
+        for (int i = 0; i &lt; ${array}.length; i++) {
+            for (int j = 0; j &lt; ${array}[i].length; j++) {
+                ${array}[i][j] = ${value};
+            }
+        }
+    </template>
+    
+    <template name="Fill3DArray" description="Rellenar un array tridimensional" context="java" auto-insert="true">
+        for (int i = 0; i &lt; ${array}.length; i++) {
+            for (int j = 0; j &lt; ${array}[i].length; j++) {
+                for (int k = 0; k &lt; ${array}[i][j].length; k++) {
+                    ${array}[i][j][k] = ${value};
+                }
+            }
+        }
+    </template>
+    
+    <template name="ArrayListMethods" description="Métodos comunes para ArrayList" context="java" auto-insert="true">
+        ${name}.add(${element}); // Agregar elemento
+        ${name}.get(${index}); // Obtener elemento
+        ${name}.remove(${index}); // Eliminar elemento
+        ${name}.size(); // Obtener tamaño
+    </template>
+</templates>
