@@ -1,0 +1,1 @@
+Este es un ejemplo de escritura y lectura en un archivo ubicado en un directorio.
