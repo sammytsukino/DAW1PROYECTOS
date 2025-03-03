@@ -41,8 +41,7 @@ public class XMLDOM {
                     // Obtener los atributos "id" y "nombre"
                     String id = element.getAttribute("id");
                     String nombre = element.getAttribute("nombre");
-                    String estado = element.getAttribute("estado");
-                    
+
                     // Mostrar la información por consola
                     System.out.println("Evento ID: " + id + ", Nombre: " + nombre);
                     
@@ -50,13 +49,12 @@ public class XMLDOM {
                     Element eventoOutput = newDoc.createElement("evento");
                     eventoOutput.setAttribute("id", id);
                     eventoOutput.setAttribute("nombre", nombre);
-                    eventoOutput.setAttribute("estado", estado);
                     rootOutput.appendChild(eventoOutput);
                 }
             }
             
             // Guardar el nuevo archivo XML con la salida del análisis
-            guardarXML(newDoc, "analisis_dom.xml");
+            guardarXML(newDoc, "analisis_marcadores_dom.xml");
             System.out.println("Archivo XML de análisis generado correctamente: analisis_dom.xml");
             
         } catch (ParserConfigurationException | IOException | org.xml.sax.SAXException | TransformerException e) {
