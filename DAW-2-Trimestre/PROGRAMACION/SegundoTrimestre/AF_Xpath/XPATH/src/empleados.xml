@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><empleados>
+<empleado id="1">
+<nombre>Miguel Gutierrez</nombre>
+<edad>47</edad>
+<departamento>IT</departamento>
+</empleado>
+<empleado id="2">
+<nombre>Beatriz Furirer</nombre>
+<edad>20</edad>
+<departamento>RRHH</departamento>
+</empleado>
+</empleados>

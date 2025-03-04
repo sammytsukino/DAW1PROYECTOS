@@ -39,11 +39,13 @@ public class XMLDOM {
                     Element element = (Element) node;
                     
                     // Obtener los atributos "id" y "nombre"
-                    String id = element.getAttribute("id");
+                    System.out.println("---- Fin del evento ----");
                     String nombre = element.getAttribute("nombre");
+                    String id = element.getAttribute("id");
+
 
                     // Mostrar la información por consola
-                    System.out.println("Evento ID: " + id + ", Nombre: " + nombre);
+                    System.out.println("Nombre: " + nombre + ". Evento ID:  " + id);
                     
                     // Crear un nuevo nodo en el documento de salida
                     Element eventoOutput = newDoc.createElement("evento");
