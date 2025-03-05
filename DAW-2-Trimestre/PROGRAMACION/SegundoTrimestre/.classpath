@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ActividadFormativa2002/Tienda/src"/>
+	<classpathentry kind="src" path="FlujosyFicheros/src"/>
+	<classpathentry kind="src" path="JOptionPane/JOptionPane/src"/>
+	<classpathentry kind="src" path="Listas/src"/>
+	<classpathentry kind="src" path="MostrarDialog/src"/>
+	<classpathentry kind="output" path="ActividadFormativa2002/Tienda/bin"/>
+</classpath>
