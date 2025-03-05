@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<educandos>
+    <educando edad="18">
+        <nombre>Juanito</nombre>
+    </educando>
+</educandos>

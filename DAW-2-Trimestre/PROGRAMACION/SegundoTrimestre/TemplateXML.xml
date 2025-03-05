@@ -1,0 +1,72 @@
+<!-- XML Template para Eclipse -->
+<templates>
+    <template name="CrearObjetoDOM" context="java" description="Crear un archivo XML usando DOM en Java">
+        <![CDATA[
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            
+            Element root = doc.createElement("educandos");
+            doc.appendChild(root);
+            
+            Element educando1 = doc.createElement("educando");
+            root.appendChild(educando1);
+            
+            Element nombre1 = doc.createElement("nombre");
+            educando1.appendChild(nombre1);
+            
+            Text textoNombre = doc.createTextNode("Juanito");
+            nombre1.appendChild(textoNombre);
+            
+            educando1.setAttribute("edad", "18");
+            
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("educandos.xml"));
+            
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <template name="EditarXML" context="java" description="Editar un archivo XML usando DOM en Java">
+        <![CDATA[
+        try {
+            File xmlFile = new File("educandos.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            
+            Element ruta = doc.getDocumentElement();
+            NodeList lista = ruta.getChildNodes();
+            
+            for (int i = 0; i < lista.getLength(); i++) {
+                Node nodo = lista.item(i);
+                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elemento = (Element) nodo;
+                    if ("18".equals(elemento.getAttribute("edad"))) {
+                        elemento.setAttribute("edad", "22");
+                        elemento.getElementsByTagName("nombre").item(0).setTextContent("Pepito");
+                    }
+                }
+            }
+            
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("educandos_editado.xml"));
+            
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+</templates>
