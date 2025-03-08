@@ -1,0 +1,112 @@
+<!-- XML Template para Eclipse -->
+<templates>
+    <!-- Bloque: Cargar y Leer XML XPath -->
+    <template name="CargarYLeerXML" context="java" description="Cargar y leer un archivo XML con XPath">
+        <![CDATA[
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(new File("Libros.xml"));
+            XPathFactory xpathFactory = XPathFactory.newInstance();
+            XPath xpath = xpathFactory.newXPath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Menú de Opciones XPath -->
+    <template name="MenuOpciones" context="java" description="Menú interactivo para manipular XML con XPath">
+        <![CDATA[
+        Scanner scanner = new Scanner(System.in);
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Elige una opción");
+            System.out.println("1. Imprimir todos los títulos");
+            System.out.println("2. Imprimir títulos de la autora Jane Austen");
+            System.out.println("3. Imprimir precios de todos los libros");
+            System.out.println("4. Imprimir título del autor que elijas");
+            System.out.println("5. Imprimir precio de los libros más caros de 20€");
+            System.out.println("6. Salir");
+            int opcion = Integer.parseInt(scanner.nextLine());
+            switch (opcion) {
+                case 1:
+                    imprimirTitulos(doc, xpath);
+                    break;
+                case 2:
+                    imprimirTituloAutor(doc, xpath, "Jane Austen");
+                    break;
+                case 3:
+                    imprimirPrecio(doc, xpath);
+                    break;
+                case 4:
+                    imprimirTituloAutorConsola(doc, xpath);
+                    break;
+                case 5:
+                    imprimirPrecioSuperior(doc, xpath);
+                    break;
+                case 6:
+                    continuar = false;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                    break;
+            }
+        }
+        scanner.close();
+        ]]>
+    </template>
+
+    <!-- Bloque: Imprimir todos los títulos XPath -->
+    <template name="ImprimirTitulosXPath" context="java" description="Imprimir todos los títulos de libros con XPath">
+        <![CDATA[
+        private static void imprimirTitulos(Document doc, XPath xpath) throws XPathExpressionException {
+            XPathExpression exprTitulo = xpath.compile("biblioteca/libro/titulo");
+            NodeList titulos = (NodeList) exprTitulo.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < titulos.getLength(); i++) {
+                System.out.println(titulos.item(i).getTextContent());
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Imprimir títulos de un autor específico XPath -->
+    <template name="ImprimirTituloAutorXPath" context="java" description="Imprimir títulos de libros de un autor específico con XPath">
+        <![CDATA[
+        private static void imprimirTituloAutor(Document doc, XPath xpath, String autor) throws XPathExpressionException {
+            XPathExpression exprAutor = xpath.compile("biblioteca/libro[autor='" + autor + "']/titulo");
+            NodeList titulos = (NodeList) exprAutor.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < titulos.getLength(); i++) {
+                System.out.println(titulos.item(i).getTextContent());
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Imprimir precios de todos los libros XPath -->
+    <template name="ImprimirPreciosXPath" context="java" description="Imprimir precios de todos los libros con XPath">
+        <![CDATA[
+        private static void imprimirPrecio(Document doc, XPath xpath) throws XPathExpressionException {
+            XPathExpression exprPrecio = xpath.compile("biblioteca/libro/precio");
+            NodeList precios = (NodeList) exprPrecio.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < precios.getLength(); i++) {
+                System.out.println("El precio del libro " + i + " es: " + precios.item(i).getTextContent());
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Imprimir libros con precio superior a 20€ XPath -->
+    <template name="ImprimirPrecioSuperiorXPath" context="java" description="Imprimir libros con precio mayor a 20€ con XPath">
+        <![CDATA[
+        private static void imprimirPrecioSuperior(Document doc, XPath xpath) throws XPathExpressionException {
+            System.out.println("\nLibros con precio mayor a 20");
+            XPathExpression exprPrecio = xpath.compile("biblioteca/libro[precio > 20]/titulo");
+            NodeList titulos = (NodeList) exprPrecio.evaluate(doc, XPathConstants.NODESET);
+            for (int i = 0; i < titulos.getLength(); i++) {
+                System.out.println(titulos.item(i).getTextContent());
+            }
+        }
+        ]]>
+    </template>
+</templates>

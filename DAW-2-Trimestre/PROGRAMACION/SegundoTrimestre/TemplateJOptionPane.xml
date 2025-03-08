@@ -1,0 +1,128 @@
+<!-- XML Template para JOptionPane Contactos -->
+<templates>
+    <!-- Bloque: Menú de Opciones con JOptionPane -->
+    <template name="MenuOpcionesJOptionPane" context="java" description="Menú interactivo con JOptionPane para gestionar contactos">
+        <![CDATA[
+        String[] opciones = {"Guardar Nombres", "Leer Nombres", "Buscar Nombre", "Sustituir Nombre", "Salir"};
+        while (true) {
+            int opcion = JOptionPane.showOptionDialog(null, "Selecciona una opción:", "Gestión de Nombres",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+            if (opcion == -1) {
+                break;
+            }
+            switch (opcion) {
+                case 0: 
+                    guardarContactos();
+                    break;
+                case 1: 
+                    leerContactos();
+                    break;
+                case 2: 
+                    buscarNombre();
+                    break;
+                case 3: 
+                    sustituirContacto();
+                    break;
+                case 4: 
+                    JOptionPane.showMessageDialog(null, "Saliendo del programa...");
+                    return;
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Leer Contactos desde Archivo -->
+    <template name="LeerContactosJOptionPane" context="java" description="Leer contactos desde archivo con JOptionPane">
+        <![CDATA[
+        public static void leerContactos() {
+            StringBuilder contacto = new StringBuilder();
+            try (FileInputStream fis = new FileInputStream("contactos.txt")) {
+                int caracter;
+                while ((caracter = fis.read()) != -1) {
+                    contacto.append((char) caracter);
+                }
+                JOptionPane.showMessageDialog(null, "Nombres guardados:\n" + contacto.toString());
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Guardar Contactos -->
+    <template name="GuardarContactosJOptionPane" context="java" description="Guardar contactos con JOptionPane">
+        <![CDATA[
+        public static void guardarContactos() {
+            ArrayList<String> contactos = new ArrayList<>();
+            while (true) {
+                String nombre = JOptionPane.showInputDialog("Introduce un nombre. Pon FIN para salir");
+                if (nombre == null || nombre.equalsIgnoreCase("FIN")) {
+                    break;
+                }
+                String telefono = JOptionPane.showInputDialog("Introduce el teléfono para " + nombre);
+                if (telefono == null) {
+                    break;
+                }
+                contactos.add(nombre + ": " + telefono);
+            }
+            try (java.io.FileWriter fw = new java.io.FileWriter("contactos.txt")) {
+                for (String contacto : contactos) {
+                    fw.write(contacto + "\n");
+                }
+                JOptionPane.showMessageDialog(null, "Contactos guardados correctamente");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error al guardar los contactos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Buscar Nombre -->
+    <template name="BuscarNombreJOptionPane" context="java" description="Buscar un nombre en la lista de contactos">
+        <![CDATA[
+        public static void buscarNombre() {
+            String nombreBuscado = JOptionPane.showInputDialog("¿Qué nombres quieres buscar?");
+            try (FileInputStream fis = new FileInputStream("contactos.txt")) {
+                byte[] bytes = fis.readAllBytes();
+                String contenido = new String(bytes);
+                if (contenido.contains(nombreBuscado)) {
+                    JOptionPane.showMessageDialog(null, "El nombre buscado: " + nombreBuscado + " está en la lista");
+                } else {
+                    JOptionPane.showMessageDialog(null, "El nombre buscado " + nombreBuscado + " no está en la lista");
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error al leer el archivo");
+            }
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Sustituir Contacto -->
+    <template name="SustituirContactoJOptionPane" context="java" description="Sustituir un contacto en la lista de contactos">
+        <![CDATA[
+        public static void sustituirContacto() {
+            String nombreBuscado = JOptionPane.showInputDialog("Introduce el nombre que deseas modificar:");
+            String nuevoTelefono = JOptionPane.showInputDialog("Introduce el nuevo teléfono:");
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("contactos.txt"));
+                StringBuilder contenido = new StringBuilder();
+                String linea;
+                while ((linea = reader.readLine()) != null) {
+                    if (linea.startsWith(nombreBuscado + ":")) {
+                        contenido.append(nombreBuscado).append(": ").append(nuevoTelefono).append("\n");
+                    } else {
+                        contenido.append(linea).append("\n");
+                    }
+                }
+                reader.close();
+                java.io.FileWriter writer = new java.io.FileWriter("contactos.txt");
+                writer.write(contenido.toString());
+                writer.close();
+                JOptionPane.showMessageDialog(null, "Contacto actualizado correctamente");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error al modificar el contacto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        ]]>
+    </template>
+</templates>
