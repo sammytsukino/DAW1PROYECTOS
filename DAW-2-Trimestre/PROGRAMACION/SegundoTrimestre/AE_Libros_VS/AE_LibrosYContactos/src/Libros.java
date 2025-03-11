@@ -1,107 +1,88 @@
-package actividadEvaluable;
-
-/* 
- * Importaciones necesarias:
- * - Clases para manejo de archivos
- * - Clases para procesamiento de XML con DOM
- * - Clases para transformación de XML
- * - Clases para consultas XPath
- * - Clases para estructuras de datos
- */
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.*;
 
-/* 
- * Clase principal que implementa un programa para consultar
- * información de libros almacenada en un archivo XML
- */
 public class Libros {
-	
-    /* 
+
+    /*
      * Método principal que inicia el programa, carga el archivo XML
      * y muestra el menú de opciones al usuario
      */
     public static void main(String[] args) {
-	
+
         try {
-            /* 
+            /*
              * Configuración para cargar y parsear el archivo XML
              * usando DOM (Document Object Model)
              */
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(new File("Libros.xml"));
-            
-            /* 
+            Document doc = builder.parse(new File("D:\\Documentos\\DAW1PROYECTOS\\DAW-2-Trimestre\\PROGRAMACION\\SegundoTrimestre\\AE_Libros_VS\\AE_LibrosYContactos\\Libros.xml"));
+
+            /*
              * Creación de objetos para realizar consultas XPath
              * sobre el documento XML
              */
             XPathFactory xpathFactory = XPathFactory.newInstance();
             XPath xpath = xpathFactory.newXPath();
-            
+
             /* Menú de opciones usando Scanner para entrada del usuario */
             Scanner scanner = new Scanner(System.in);
             boolean continuar = true;
 
             while (continuar) {
                 /* Muestra las opciones disponibles */
-            	System.out.println("\n");
-            	System.out.println("-------------------");
+                System.out.println("\n");
+                System.out.println("-------------------");
                 System.out.println("Elige una opción");
                 System.out.println("1. Imprimir todos los títulos");
                 System.out.println("2. Imprimir titulos de la autora Jane Austen");
                 System.out.println("3. Imprimir precios de todos los libros");
                 System.out.println("4. Imprimir titulo del autor que elijas");
-                System.out.println("5. Imprimir precio de los libros más caros de 20€");
+                System.out.println("5. Imprimir precio de los libros más caros de 20€1");
                 System.out.println("6. Salir");
-            	System.out.println("-------------------");
-            	System.out.println("\n");
+                System.out.println("-------------------");
+                System.out.println("\n");
 
                 /* Lee la opción seleccionada por el usuario */
                 int opcion = Integer.parseInt(scanner.nextLine());
 
                 /* Ejecuta la acción correspondiente a la opción seleccionada */
                 switch (opcion) {
-                case 1:
-                    imprimirTitulos(doc, xpath);
-                    break;
-                case 2:
-                    imprimirTituloAutor(doc, xpath, "Jane Austen");
-                    break;
-                case 3:
-                    imprimirPrecio(doc, xpath);
-                    break;
-                case 4:
-                    imprimirTituloAutorConsola(doc, xpath);
-                    break;
-                case 5:
-                    imprimirPrecioSuperior(doc, xpath);
-                    break;
-                case 6:
-                    continuar = false;
-                    break;
-                default:
-                    System.out.println("Opción no válida. Inténtalo de nuevo.");
-                    break;
+                    case 1:
+                        imprimirTitulos(doc, xpath);
+                        break;
+                    case 2:
+                        imprimirTituloAutor(doc, xpath, "Jane Austen");
+                        break;
+                    case 3:
+                        imprimirPrecio(doc, xpath);
+                        break;
+                    case 4:
+                        imprimirTituloAutorConsola(doc, xpath);
+                        break;
+                    case 5:
+                        imprimirPrecioSuperior(doc, xpath);
+                        break;
+                    case 6:
+                        continuar = false;
+                        break;
+                    default:
+                        System.out.println("Opción no válida. Inténtalo de nuevo.");
+                        break;
                 }
             }
             /* Cierra el scanner al finalizar */
@@ -112,8 +93,8 @@ public class Libros {
             e.printStackTrace();
         }
     }
-       
-    /* 
+
+    /*
      * Método que imprime todos los títulos de libros
      * utilizando una expresión XPath
      */
@@ -127,8 +108,8 @@ public class Libros {
             System.out.println(titulos.item(i).getTextContent());
         }
     }
-	
-    /* 
+
+    /*
      * Método que imprime los títulos de libros de un autor específico
      * utilizando una expresión XPath con filtro
      */
@@ -144,7 +125,7 @@ public class Libros {
         }
     }
 
-    /* 
+    /*
      * Método que imprime los precios de todos los libros
      * utilizando una expresión XPath
      */
@@ -163,28 +144,32 @@ public class Libros {
         }
     }
 
-    /* 
+    /*
      * Método que solicita un autor al usuario y muestra sus libros
      * utilizando una expresión XPath con filtro
      */
     private static void imprimirTituloAutorConsola(Document doc, XPath xpath) throws XPathExpressionException {
-        /* Solicita el autor al usuario */
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce un autor: ");
-        String autor = scanner.nextLine();
+        try (/* Solicita el autor al usuario */
+        Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Introduce un autor: ");
+            String autor = scanner.nextLine();
 
-        System.out.println("\nLibros que pertenecen a " + autor);
-        /* Consulta XPath filtrada por el autor introducido */
-        XPathExpression exprAutor = xpath.compile("biblioteca/libro[autor='" + autor + "']/titulo");
-        /* Evalúa la expresión y obtiene los nodos resultado */
-        NodeList titulos = (NodeList) exprAutor.evaluate(doc, XPathConstants.NODESET);
-        /* Recorre la lista de nodos e imprime el contenido de cada título */
-        for (int i = 0; i < titulos.getLength(); i++) {
-            System.out.println(titulos.item(i).getTextContent());
+            System.out.println("\nLibros que pertenecen a " + autor);
+            /* Consulta XPath filtrada por el autor introducido */
+            XPathExpression exprAutor = xpath.compile("biblioteca/libro[autor='" + autor + "']/titulo");
+            /* Evalúa la expresión y obtiene los nodos resultado */
+            NodeList titulos = (NodeList) exprAutor.evaluate(doc, XPathConstants.NODESET);
+            /* Recorre la lista de nodos e imprime el contenido de cada título */
+            for (int i = 0; i < titulos.getLength(); i++) {
+                System.out.println(titulos.item(i).getTextContent());
+            }
+        } catch (DOMException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-    }	
+    }
 
-    /* 
+    /*
      * Método que imprime los títulos de libros con precio superior a 20
      * utilizando una expresión XPath con filtro numérico
      */

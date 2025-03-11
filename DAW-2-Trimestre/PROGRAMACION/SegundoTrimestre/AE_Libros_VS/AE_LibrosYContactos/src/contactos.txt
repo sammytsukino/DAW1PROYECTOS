@@ -1,0 +1,3 @@
+Nombre: Sammy, Teléfono: 6456
+Nombre: Alvaro, Teléfono: 46656
+Nombre: Julia 58456, Teléfono: 545

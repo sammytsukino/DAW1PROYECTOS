@@ -1,11 +1,3 @@
-package actividadEvaluable;
-
-/* 
- * Importaciones necesarias:
- * - Clases para manejo de archivos y entrada/salida
- * - ArrayList para almacenar los contactos
- * - JOptionPane para la interfaz gráfica
- */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,12 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-/* 
- * Clase principal que implementa una agenda de contactos
- * con interfaz gráfica y persistencia en archivo de texto
- */
 public class Contactos {
-    
     /* 
      * ArrayList estático para almacenar los contactos
      * Se usa como estructura de datos principal (requisito 1)
@@ -224,3 +211,4 @@ public class Contactos {
         }
     }
 }
+
