@@ -30,7 +30,7 @@ public class Libros {
              */
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(new File("D:\\Documentos\\DAW1PROYECTOS\\DAW-2-Trimestre\\PROGRAMACION\\SegundoTrimestre\\AE_Libros_VS\\AE_LibrosYContactos\\Libros.xml"));
+            Document doc = builder.parse(new File("C:\\Users\\DAW-1\\Desktop\\DAW1PROYECTOS\\DAW-2-Trimestre\\PROGRAMACION\\SegundoTrimestre\\AE_Libros_VS\\AE_LibrosYContactos\\src\\Libros.xml"));
 
             /*
              * Creación de objetos para realizar consultas XPath
@@ -164,7 +164,6 @@ public class Libros {
                 System.out.println(titulos.item(i).getTextContent());
             }
         } catch (DOMException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

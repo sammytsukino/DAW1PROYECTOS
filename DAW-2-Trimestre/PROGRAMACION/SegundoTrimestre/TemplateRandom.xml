@@ -1,0 +1,115 @@
+<templates>
+    <!-- Bloque: Manejo de ArrayList -->
+    <template name="ArrayListManejo" context="java" description="Operaciones básicas con ArrayList">
+        <![CDATA[
+        ArrayList<String> paises = new ArrayList<>();
+        
+        // Agregar países
+        paises.add("España");
+        paises.add("Italia");
+        paises.add("Francia");
+        paises.add("Bélgica");
+        paises.add("Portugal");
+        
+        // Comprobar si existe un país
+        System.out.println(paises.contains("Francia"));
+        
+        // Obtener país
+        System.out.println(paises.get(2));
+        
+        // Modificar elemento
+        paises.set(2, "Alemania");
+        
+        // Mostrar lista de países
+        for (String pais : paises) {
+            System.out.println(pais);
+        }
+        
+        // Borrar elementos
+        paises.remove(2);
+        paises.remove("Portugal");
+        
+        // Mostrar lista actualizada
+        for (String pais : paises) {
+            System.out.println(pais);
+        }
+        
+        // Obtener tamaño de la lista
+        System.out.println(paises.size());
+        ]]>
+    </template>
+    
+    <!-- Bloque: Manejo de Try-Catch -->
+    <template name="TryCatchManejo" context="java" description="Ejemplo de Try-Catch en Java">
+        <![CDATA[
+        try {
+            int n = Integer.parseInt("V");
+            System.out.println("Hola");
+        } catch (Exception e) {
+            System.out.println("Esto se ejecuta cuando hay error");
+            System.out.println(e.getClass());
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Esto se ejecuta siempre");
+        }
+        ]]>
+    </template>
+    
+    <!-- Bloque: InputDialog con JOptionPane -->
+    <template name="InputDialogJOptionPane" context="java" description="Leer entradas con JOptionPane">
+        <![CDATA[
+        String variable = JOptionPane.showInputDialog(null, "Introduce un texto", "Lector", 1);
+        System.out.println(variable);
+        
+        String numeroTexto = JOptionPane.showInputDialog("Introduce un número");
+        int numero = Integer.parseInt(numeroTexto);
+        System.out.println(numero);
+        
+        int numero2 = Integer.parseInt(JOptionPane.showInputDialog("Introduce un número"));
+        System.out.println(numero2);
+        ]]>
+    </template>
+    
+    <!-- Bloque: ConfirmDialog con JOptionPane -->
+    <template name="ConfirmDialogJOptionPane" context="java" description="Uso de ConfirmDialog con JOptionPane">
+        <![CDATA[
+        int opcion = JOptionPane.showConfirmDialog(null, "Elige una opción", "Opciones", 1, 0);
+        
+        if (opcion == 0) {
+            System.out.println("Has elegido la opción YES");
+        } else if (opcion == 1) {
+            System.out.println("Has elegido NO");
+        } else if (opcion == 2) {
+            System.out.println("Has elegido CANCEL");
+        }
+        ]]>
+    </template>
+    
+    <!-- Bloque: MessageDialog con JOptionPane -->
+    <template name="MessageDialogJOptionPane" context="java" description="Uso de MessageDialog con JOptionPane">
+        <![CDATA[
+        String numeroTexto = JOptionPane.showInputDialog("Dame un texto: ");
+        int numero = Integer.parseInt(numeroTexto);
+        
+        JOptionPane.showMessageDialog(null, numero);
+        ]]>
+    </template>
+    
+    <!-- Bloque: OptionDialog con JOptionPane -->
+    <template name="OptionDialogJOptionPane" context="java" description="Uso de OptionDialog con JOptionPane">
+        <![CDATA[
+        int opcion = JOptionPane.showOptionDialog(null, "Elige una opción", "Opciones disponibles", 0, 1, null,
+                new Object[] { "Rosa", "Azul", "Verde", "Amarillo" }, "Rosa");
+        
+        if (opcion == 0) {
+            System.out.println("Has elegido la opción 1");
+        } else if (opcion == 1) {
+            System.out.println("Has elegido opción 2");
+        } else if (opcion == 2) {
+            System.out.println("Has elegido opción 3");
+        } else if (opcion == 3) {
+            System.out.println("Has elegido opción 4");
+        }
+        ]]>
+    </template>
+</templates>
