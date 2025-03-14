@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    
+    <!-- Template para leer archivo -->
+    <template 
+        name="LeerArchivo" 
+        description="Lee el archivo de texto y lo muestra por consola" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        ]]>
+    </template>
+
+    <!-- Template para agregar línea al archivo -->
+    <template 
+        name="AgregarLinea" 
+        description="Solicita al usuario ingresar nombre, edad y departamento para agregar al archivo" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        try (FileWriter fw = new FileWriter(ARCHIVO, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter pw = new PrintWriter(bw)) {
+
+            System.out.print("Ingrese nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Ingrese edad: ");
+            int edad = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer
+            System.out.print("Ingrese departamento: ");
+            String departamento = scanner.nextLine();
+
+            pw.println(nombre + "," + edad + "," + departamento);
+            System.out.println("Línea agregada correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+        ]]>
+    </template>
+
+    <!-- Template para filtrar líneas del archivo -->
+    <template 
+        name="FiltrarLineas" 
+        description="Filtra las líneas del archivo que contienen un departamento específico" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        System.out.print("Ingrese el departamento a filtrar: ");
+        String filtro = scanner.nextLine();
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(filtro)) {
+                    System.out.println(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+        ]]>
+    </template>
+
+    <!-- Template para ordenar las líneas del archivo -->
+    <template 
+        name="OrdenarLineas" 
+        description="Ordena las líneas del archivo alfabéticamente" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        ArrayList<String> lineas = new ArrayList<>();
+        
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+
+            Collections.sort(lineas);
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO))) {
+                for (String l : lineas) {
+                    bw.write(l);
+                    bw.newLine();
+                }
+            }
+            System.out.println("Archivo ordenado correctamente.");
+
+        } catch (IOException e) {
+            System.out.println("Error al procesar el archivo: " + e.getMessage());
+        }
+        ]]>
+    </template>
+
+</templates>

@@ -1,0 +1,131 @@
+package simulacro;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
+
+public class Ficheros {
+    private static final String ARCHIVO = "C:\\Users\\DAW-1\\new-eclipse-workspace\\SimulacroExamen\\src\\simulacro\\datos.csv";
+    
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        
+        //Crear un menu con Switch case
+        int opcion = 0;
+        while (opcion != 5) {
+            System.out.println("1. Leer archivo");
+            System.out.println("2. Agregar línea");
+            System.out.println("3. Filtrar líneas");
+            System.out.println("4. Ordenar líneas");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
+
+            switch (opcion) {
+                case 1: {
+                    leerArchivo();
+                    break;
+                }
+                case 2: {
+                    agregarLinea(scanner);
+                    break;
+                }
+                case 3: {
+                    filtrarLineas(scanner);
+                    break;
+                }
+                case 4: {
+                    ordenarLineas();
+                    break;
+                }
+                default:
+                    System.out.println("Opción no válida");
+            }
+        }
+        scanner.close();
+    }
+    //Método leerArchivo con BufferedReader
+    private static void leerArchivo() {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    
+    //Método agregarLineas con Scanner y BufferedWriter
+    private static void agregarLinea(Scanner scanner) {
+        try (FileWriter fw = new FileWriter(ARCHIVO, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter pw = new PrintWriter(bw)) {
+
+            System.out.print("Ingrese nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Ingrese edad: ");
+            int edad = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer
+            System.out.print("Ingrese departamento: ");
+            String departamento = scanner.nextLine();
+
+            pw.println(nombre + "," + edad + "," + departamento);
+            System.out.println("Línea agregada correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+        }
+    }
+    //Método filtrarLineas con Buffered Reader y Scanner para buscar una palabra
+    private static void filtrarLineas(Scanner scanner) {
+        System.out.print("Ingrese el departamento a filtrar: ");
+        String filtro = scanner.nextLine();
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(filtro)) {
+                    System.out.println(linea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
+    }
+    //Método ordenarLineas con ArrayList para ordernar las líneas
+    private static void ordenarLineas() {
+        ArrayList<String> lineas = new ArrayList<>();
+
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(ARCHIVO), Charset.forName("UTF-8"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+
+            Collections.sort(lineas);
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO))) {
+                for (String l : lineas) {
+                    bw.write(l);
+                    bw.newLine();
+                }
+            }
+            System.out.println("Archivo ordenado correctamente.");
+
+        } catch (IOException e) {
+            System.out.println("Error al procesar el archivo: " + e.getMessage());
+        }
+    }
+}
