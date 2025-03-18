@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    
+    <!-- Template para ingresar números en una lista -->
+    <template 
+        name="IngresarNumeros" 
+        description="Solicita al usuario ingresar 5 números enteros y los almacena en una lista" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> numeros = new ArrayList<>();
+        
+        System.out.println("Introduce 5 números enteros");
+        for (int i = 0; i < 5; i++) {
+            numeros.add(scanner.nextInt());
+        }
+        scanner.close();
+        ]]>
+    </template>
+    
+    <!-- Template para calcular mínimo y máximo -->
+    <template 
+        name="CalcularMinMax" 
+        description="Obtiene el número mínimo y máximo de una lista de enteros" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        int max = Collections.max(numeros);
+        int min = Collections.min(numeros);
+        ]]>
+    </template>
+    
+    <!-- Template para calcular la suma y el promedio -->
+    <template 
+        name="CalcularSumaPromedio" 
+        description="Calcula la suma total y el promedio de una lista de enteros" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        int suma = 0;
+        for (int num : numeros) {
+            suma += num;
+        }
+        double promedio = (double) suma / numeros.size();
+        ]]>
+    </template>
+    
+    <!-- Template para ordenar la lista de números -->
+    <template 
+        name="OrdenarNumeros" 
+        description="Ordena la lista de números de menor a mayor" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        Collections.sort(numeros);
+        ]]>
+    </template>
+    
+    <!-- Template para mostrar los resultados -->
+    <template 
+        name="MostrarResultados" 
+        description="Muestra por consola los resultados calculados" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        System.out.println("La suma total es " + suma);
+        System.out.println("El mínimo es " + min);
+        System.out.println("El máximo es " + max);
+        System.out.println("La media es " + promedio);
+        System.out.println("Los números elegidos son " + numeros);
+        ]]>
+    </template>
+    
+</templates>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    
+    <!-- Template para la suma de números -->
+    <template 
+        name="OperacionSuma" 
+        description="Realiza la suma de un entero y un flotante en Java" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        int num1 = 5;
+        float num2 = (float) 10.5;
+        float suma = num1 + num2;
+        System.out.println("La suma de " + num1 + " más " + num2 + " es igual a " + suma);
+        ]]>
+    </template>
+    
+    <!-- Template para conversión a String -->
+    <template 
+        name="ConversionString" 
+        description="Convierte un número a String en Java" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        String resultado = String.valueOf(suma);
+        System.out.println(resultado);
+        ]]>
+    </template>
+    
+    <!-- Template para concatenación de cadenas -->
+    <template 
+        name="ConcatenacionCadenas" 
+        description="Concatena un String con otro texto" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        String resultadoConcatenado = resultado + " Este es el resultado de la suma";
+        System.out.println(resultadoConcatenado);
+        ]]>
+    </template>
+    
+    <!-- Template para reemplazo de texto en cadenas -->
+    <template 
+        name="ReemplazoTexto" 
+        description="Reemplaza una palabra dentro de una cadena en Java" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        String resultadoReemplazado = resultadoConcatenado.replace("resultado", "cálculo");
+        System.out.println(resultadoReemplazado);
+        ]]>
+    </template>
+    
+    <!-- Template para obtener un substring -->
+    <template 
+        name="ObtenerSubstring" 
+        description="Extrae una porción de un String" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        String resultadoEvaluado = resultadoConcatenado.substring(0, Math.min(5, resultadoConcatenado.length()));
+        System.out.println(resultadoEvaluado);
+        ]]>
+    </template>
+    
+    <!-- Template para evaluar si un String contiene un número -->
+    <template 
+        name="EvaluarNumeroEnString" 
+        description="Verifica si una cadena contiene números" 
+        context="java" 
+        enabled="true">
+        <![CDATA[
+        boolean contieneNumero = resultadoEvaluado.matches(".*\\d+.*");
+        System.out.println("El resultado tiene algún número? " + contieneNumero);
+        ]]>
+    </template>
+    
+</templates>
