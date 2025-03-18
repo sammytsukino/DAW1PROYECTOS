@@ -1,0 +1,7 @@
+Juan,45,Historia
+Miguel,34,Geografía
+Sammy,31,Diseno
+Julia,28,Eing
+Pepe,12,,Eing
+Alvaro,23,Puf
+Sammy,45,Ay

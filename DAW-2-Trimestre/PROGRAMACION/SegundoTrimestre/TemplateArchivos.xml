@@ -1,0 +1,78 @@
+<!-- XML Template para operaciones con archivos -->
+<templates>
+    <!-- Bloque: Crear Carpeta y Archivo -->
+    <template name="CrearCarpetaArchivo" context="java" description="Crear una carpeta y un archivo dentro de ella">
+        <![CDATA[
+        File carpeta = new File("ruta/carpeta");
+        if (!carpeta.exists() && carpeta.mkdirs()) {
+            System.out.println("La carpeta se ha creado correctamente");
+        }
+        File archivo = new File("ruta/carpeta/archivo.txt");
+        try {
+            if (archivo.createNewFile()) {
+                System.out.println("Archivo creado correctamente");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Escribir en un Archivo con FileWriter -->
+    <template name="EscribirFileWriter" context="java" description="Escribir en un archivo usando FileWriter">
+        <![CDATA[
+        try (FileWriter fw = new FileWriter("ruta/archivo.txt")) {
+            fw.write("Contenido del archivo");
+            fw.append("Texto adicional");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Escribir en un Archivo con FileOutputStream -->
+    <template name="EscribirFileOutputStream" context="java" description="Escribir en un archivo usando FileOutputStream">
+        <![CDATA[
+        try (FileOutputStream fos = new FileOutputStream("ruta/archivo.txt")) {
+            fos.write("Texto de ejemplo".getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Escribir un Byte con FileOutputStream -->
+    <template name="EscribirByteFileOutputStream" context="java" description="Escribir un byte en un archivo">
+        <![CDATA[
+        try (FileOutputStream fos = new FileOutputStream("ruta/archivo.txt")) {
+            fos.write(65);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Escribir con BufferedWriter -->
+    <template name="EscribirBufferedWriter" context="java" description="Escribir en un archivo usando BufferedWriter">
+        <![CDATA[
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("ruta/archivo.txt"))) {
+            bw.write("Texto con BufferedWriter");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+
+    <!-- Bloque: Escribir con BufferedOutputStream -->
+    <template name="EscribirBufferedOutputStream" context="java" description="Escribir en un archivo usando BufferedOutputStream">
+        <![CDATA[
+        try (FileOutputStream fos = new FileOutputStream("ruta/archivo.txt");
+             BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+            bos.write("Texto con BufferedOutputStream".getBytes());
+            bos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ]]>
+    </template>
+</templates>
