@@ -1,0 +1,6 @@
+CREATE FUNCTION `sumar_dos_numeros` (a int, b int)
+RETURNS INTEGER
+DETERMINISTIC
+BEGIN
+	RETURN a + b;
+END
