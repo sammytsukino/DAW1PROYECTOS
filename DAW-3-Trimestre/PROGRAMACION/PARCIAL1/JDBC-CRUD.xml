@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+    <!-- Template para conexión a base de datos -->
+    <template autoinsert="true" context="java" deleted="false" description="Constantes de conexión a base de datos" enabled="true" name="jdbcConnection">
+static final String URL = "jdbc:mysql://localhost:3306/${database}";
+static final String USER = "${username}";
+static final String PASSWORD = "${password}";
+    </template>
+    
+    <!-- Template para método de inserción (CREATE) -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para insertar un nuevo registro" enabled="true" name="jdbcInsert">
+public static void insertar${Entity}(${Entity} ${entity}) {
+    String sql = "INSERT INTO ${table} (${columns}) VALUES (${values})";
+    
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        
+        ${setParameters}
+        
+        preparedStatement.executeUpdate();
+        System.out.println("${Entity} añadido correctamente");
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    </template>
+    
+    <!-- Template para método de lectura de todos los registros (READ) -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para listar todos los registros" enabled="true" name="jdbcSelectAll">
+public static void listar${Entity}s() {
+    String sql = "SELECT * FROM ${table}";
+    
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery()) {
+        
+        System.out.println("Listado de ${entity}s: \n");
+        
+        while (resultSet.next()) {
+            ${Entity} ${entity} = new ${Entity}();
+            ${entity}.setId(resultSet.getInt("${idColumn}"));
+            ${extractData}
+            
+            System.out.println(${entity});
+            System.out.println("--------------------");
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+    </template>
+    
+    <!-- Template para método de lectura de un registro por ID (READ by ID) -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para obtener un registro por ID" enabled="true" name="jdbcSelectById">
+public static ${Entity} obtener${Entity}PorId(int id) {
+    String sql = "SELECT * FROM ${table} WHERE ${idColumn} = ?";
+    ${Entity} ${entity} = null;
+    
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        
+        preparedStatement.setInt(1, id);
+        
+        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                ${entity} = new ${Entity}();
+                ${entity}.setId(resultSet.getInt("${idColumn}"));
+                ${extractData}
+            }
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return ${entity};
+}
+    </template>
+    
+    <!-- Template para método de actualización (UPDATE) -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para actualizar un registro" enabled="true" name="jdbcUpdate">
+public static boolean actualizar${Entity}(${Entity} ${entity}) {
+    String sql = "UPDATE ${table} SET ${updateColumns} WHERE ${idColumn} = ?";
+    
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        
+        ${setParameters}
+        preparedStatement.setInt(${lastIndex}, ${entity}.getId());
+        
+        int filasActualizadas = preparedStatement.executeUpdate();
+        
+        if (filasActualizadas > 0) {
+            System.out.println("${Entity} actualizado correctamente");
+            return true;
+        } else {
+            System.out.println("No se encontró ${entity} con el id: " + ${entity}.getId());
+            return false;
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    </template>
+    
+    <!-- Template para método de eliminación (DELETE) -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para eliminar un registro por ID" enabled="true" name="jdbcDelete">
+public static boolean eliminar${Entity}(int id) {
+    String sql = "DELETE FROM ${table} WHERE ${idColumn} = ?";
+    
+    try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        
+        preparedStatement.setInt(1, id);
+        
+        int filasEliminadas = preparedStatement.executeUpdate();
+        
+        if (filasEliminadas > 0) {
+            System.out.println("${Entity} eliminado correctamente");
+            return true;
+        } else {
+            System.out.println("No se encontró ${entity} con el id: " + id);
+            return false;
+        }
+        
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+    </template>
+    
+    <!-- Template para método de entrada de datos con Scanner -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para capturar datos con Scanner" enabled="true" name="jdbcInputData">
+public static ${Entity} capturarDatos${Entity}(Scanner scanner) {
+    ${Entity} ${entity} = new ${Entity}();
+    
+    ${captureFields}
+    
+    return ${entity};
+}
+    </template>
+</templates>
