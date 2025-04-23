@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+    <!-- Template para crear un método DAO de inserción -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de inserción para DAO" enabled="true" name="daoInsert">
+public void insertar${Entidad}(${Entidad} ${entidad}) {
+    String sql = "INSERT INTO ${tabla} VALUES (${valores})";
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        ${asignacion_params}
+        stmt.executeUpdate();
+        System.out.println("${Entidad} insertado correctamente.");
+    } catch (SQLException e) {
+        System.out.println("Error al insertar ${entidad}: " + e.getMessage());
+    }
+}
+    </template>
+    
+    <!-- Template para crear un método DAO de actualización -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de actualización para DAO" enabled="true" name="daoUpdate">
+public void actualizar${Entidad}(${Entidad} ${entidad}) {
+    String sql = "UPDATE ${tabla} SET ${columnas_set} WHERE ${columna_id}=?";
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        ${asignacion_params}
+        stmt.setInt(${num_param}, ${entidad}.getId${Entidad}());
+        stmt.executeUpdate();
+        System.out.println("${Entidad} actualizado correctamente.");
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar ${entidad}: " + e.getMessage());
+    }
+}
+    </template>
+    
+    <!-- Template para crear un método DAO de listado -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de listado para DAO" enabled="true" name="daoList">
+public List&lt;${Entidad}&gt; listar${Entidad}() {
+    List&lt;${Entidad}&gt; lista = new ArrayList&lt;&gt;();
+    String sql = "SELECT * FROM ${tabla}";
+    try (Connection conn = DBConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            lista.add(new ${Entidad}(${parametros_constructor}));
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al listar ${entidad}s: " + e.getMessage());
+    }
+    return lista;
+}
+    </template>
+    
+    <!-- Template para crear un método DAO de eliminación -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de eliminación para DAO" enabled="true" name="daoDelete">
+public void eliminar${Entidad}(int id) {
+    String sql = "DELETE FROM ${tabla} WHERE ${columna_id}=?";
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        stmt.executeUpdate();
+        System.out.println("${Entidad} eliminado correctamente.");
+    } catch (SQLException e) {
+        System.out.println("Error al eliminar ${entidad}: " + e.getMessage());
+    }
+}
+    </template>
+    
+    <!-- Template para crear una clase DAO completa -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear una clase DAO completa" enabled="true" name="daoClass">
+package ${paquete};
+
+import java.sql.*;
+import java.util.*;
+
+public class ${Entidad}DAO {
+    public void insertar${Entidad}(${Entidad} ${entidad}) {
+        String sql = "INSERT INTO ${tabla} VALUES (${valores})";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ${asignacion_params_insert}
+            stmt.executeUpdate();
+            System.out.println("${Entidad} insertado correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al insertar ${entidad}: " + e.getMessage());
+        }
+    }
+    
+    public void actualizar${Entidad}(${Entidad} ${entidad}) {
+        String sql = "UPDATE ${tabla} SET ${columnas_set} WHERE ${columna_id}=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            ${asignacion_params_update}
+            stmt.executeUpdate();
+            System.out.println("${Entidad} actualizado correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar ${entidad}: " + e.getMessage());
+        }
+    }
+    
+    public List&lt;${Entidad}&gt; listar${Entidad}() {
+        List&lt;${Entidad}&gt; lista = new ArrayList&lt;&gt;();
+        String sql = "SELECT * FROM ${tabla}";
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                lista.add(new ${Entidad}(${parametros_constructor}));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al listar ${entidad}s: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    public void eliminar${Entidad}(int id) {
+        String sql = "DELETE FROM ${tabla} WHERE ${columna_id}=?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("${Entidad} eliminado correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar ${entidad}: " + e.getMessage());
+        }
+    }
+}
+    </template>
+    
+    <!-- Template para crear una estructura de menú -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear un menú de opciones para gestionar una entidad" enabled="true" name="entityMenu">
+package ${paquete};
+
+import java.util.*;
+
+public class ${Entidad}Menu {
+    public static void mostrarMenu() {
+        Scanner sc = new Scanner(System.in);
+        int opcion = 0;
+        do {
+            System.out.println("--MENU ${ENTIDAD}--");
+            System.out.println("1. Insertar ${entidad}");
+            System.out.println("2. Actualizar ${entidad}");
+            System.out.println("3. Listar ${entidad}s");
+            System.out.println("4. Eliminar ${entidad}");
+            System.out.println("5. Salir");
+            System.out.print("Seleccione una opcion: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+            ${Entidad}DAO ${entidad}DAO = new ${Entidad}DAO();
+            
+            switch (opcion) {
+                case 1:
+                    ${logica_insertar}
+                    break;
+                case 2:
+                    ${logica_actualizar}
+                    break;
+                case 3:
+                    List&lt;${Entidad}&gt; lista = ${entidad}DAO.listar${Entidad}();
+                    for (${Entidad} ${entidad} : lista) {
+                        System.out.println(${entidad}.toString());
+                    }
+                    break;
+                case 4:
+                    System.out.println("Id del ${entidad} a eliminar");
+                    int id${Entidad}Eliminado = sc.nextInt();
+                    sc.nextLine();
+                    ${entidad}DAO.eliminar${Entidad}(id${Entidad}Eliminado);
+                    break;
+                case 5:
+                    System.out.println("Saliendo del menu...");
+                    break;
+                default:
+                    System.err.println("Por favor, ingrese un numero valido");
+                    break;
+            }
+        } while (opcion != 5);
+    }
+}
+    </template>
+    
+    <!-- Template para creación de métodos de consultas JOIN -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de consulta con JOIN" enabled="true" name="consultaJoin">
+private static void mostrar${EntidadA}Con${EntidadB}() {
+    String sql = "SELECT ${campos_seleccionados} "
+              + "FROM ${tabla_a} a "
+              + "JOIN ${tabla_b} b ON a.${columna_join_a} = b.${columna_join_b}";
+    try (Connection conn = DBConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            System.out.println(${formato_salida});
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al consultar ${entidadA} con ${entidadB}: " + e.getMessage());
+    }
+}
+    </template>
+    
+    <!-- Template para crear una clase de entidad -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear una clase de entidad" enabled="true" name="entityClass">
+package ${paquete};
+
+public class ${Entidad} {
+    // Atributos
+    ${atributos}
+    
+    // Constructor
+    public ${Entidad}(${parametros_constructor}) {
+        ${inicializacion_constructor}
+    }
+    
+    // Getters y Setters
+    ${getters_setters}
+    
+    @Override
+    public String toString() {
+        return ${representacion_string};
+    }
+}
+    </template>
+    
+    <!-- Template para establecer conexión con base de datos -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear método de conexión a base de datos" enabled="true" name="dbConnection">
+package ${paquete};
+
+import java.sql.*;
+
+public class DBConnection {
+    private static final String JDBC_URL = "${jdbc_url}";
+    private static final String JDBC_USER = "${jdbc_user}";
+    private static final String JDBC_PASSWORD = "${jdbc_password}";
+    
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+    }
+}
+    </template>
+</templates>
