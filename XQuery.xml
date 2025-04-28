@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+    <!-- Template para mostrar nombres de universidades -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar nombres de universidades" enabled="true" name="xqUniversidades">
+xquery version "3.1"; 
+for $a in doc("${ruta_xml}/universidades.xml")//universidad/nombre
+return <nombre>{$a/text()}</nombre>
+    </template>
+    
+    <!-- Template para mostrar departamentos con su universidad -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar departamentos con su universidad" enabled="true" name="xqDeptosUniversidad">
+xquery version "3.1";
+for $d in doc("${ruta_xml}/departamentos.xml")//departamento
+for $u in doc("${ruta_xml}/universidades.xml")//universidad[@id=$d/@universidad_id]
+return
+    <info>
+        <nombreUni>{$u/nombre}</nombreUni>
+        <nombreDpto>{$d/nombre}</nombreDpto>
+    </info>
+    </template>
+    
+    <!-- Template para mostrar cursos y el nombre del profesor que los imparte -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar cursos y el nombre del profesor que los imparte" enabled="true" name="xqCursosProfesor">
+xquery version "3.1"; 
+for $curso in doc("${ruta_xml}/${archivo_cursos}.xml")//curso
+let $profesor := doc("${ruta_xml}/${archivo_profesores}.xml")//profesor[@id = $curso/@profesor_id]
+return 
+  <curso>
+    <nombre>{ $curso/nombre/text() }</nombre>
+    <profesor>{ $profesor/nombre/text() }</profesor>
+  </curso>
+    </template>
+    
+    <!-- Template para mostrar nombres de estudiantes y universidad a la que pertenecen -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar nombres de estudiantes y universidad a la que pertenecen" enabled="true" name="xqEstudiantesUniversidad">
+xquery version "3.1"; 
+for $estudiante in doc("${ruta_xml}/${archivo_estudiantes}.xml")//estudiante
+let $universidad := doc("${ruta_xml}/${archivo_universidades}.xml")//universidad[@id = $estudiante/@universidad_id]
+return  
+  <estudiante>
+    <nombre>{ $estudiante/nombre/text() }</nombre>
+    <universidad>{ $universidad/nombre/text() }</universidad>
+  </estudiante>
+    </template>
+    
+    <!-- Template para mostrar nombres de estudiantes inscritos en un curso específico -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar nombres de estudiantes inscritos en un curso específico" enabled="true" name="xqEstudiantesCurso">
+xquery version "3.1";
+for $inscripcion in doc("${ruta_xml}/${archivo_inscripciones}.xml")//inscripcion
+let $estudiante := doc("${ruta_xml}/${archivo_estudiantes}.xml")//estudiante[@id = $inscripcion/@estudiante_id]
+let $curso := doc("${ruta_xml}/${archivo_cursos}.xml")//curso[@id = $inscripcion/@curso_id]
+where $curso/nombre = "${nombre_curso}"
+return  
+  <estudiante>
+    <nombre>{ $estudiante/nombre/text()}</nombre>
+  </estudiante>
+    </template>
+    
+    <!-- Template para mostrar cursos impartidos por profesores de un departamento específico -->
+    <template autoinsert="true" context="xml" deleted="false" description="XQuery para mostrar cursos impartidos por profesores de un departamento específico" enabled="true" name="xqCursosDepartamento">
+xquery version "3.1";
+for $curso in doc("${ruta_xml}/${archivo_cursos}.xml")//curso
+let $profesor := doc("${ruta_xml}/${archivo_profesores}.xml")//profesor[@id = $curso/@profesor_id]
+let $departamento := doc("${ruta_xml}/${archivo_departamentos}.xml")//departamento[@id=$profesor/@departamento_id]
+where $departamento/nombre = "${nombre_departamento}"
+return 
+    <curso>
+        <nombre> {$curso/nombre/text()} </nombre>
+    </curso>
+    </template>
+    
+    <!-- Template para consultas XQuery genéricas -->
+    <template autoinsert="true" context="xml" deleted="false" description="Plantilla base para consultas XQuery" enabled="true" name="xqBase">
+xquery version "3.1";
+
+(: ${descripcion_consulta} :)
+for $${variable} in doc("${ruta_archivo}")//#{elemento_raiz}
+${resto_consulta}
+return 
+    <resultado>
+        {${elemento_resultado}}
+        {${contenido_resultado}}
+    </resultado>
+    </template>
+    
+    <!-- Template para crear una consulta JOIN en XQuery -->
+    <template autoinsert="true" context="xml" deleted="false" description="Plantilla para crear consultas tipo JOIN en XQuery" enabled="true" name="xqJoin">
+xquery version "3.1";
+
+(: ${descripcion_consulta} :)
+for $${var1} in doc("${ruta_archivo1}")//#{elemento1}
+let $${var2} := doc("${ruta_archivo2}")//#{elemento2}[@${atributo2} = $${var1}/@${atributo1}]
+${condiciones}
+return 
+    <resultado name="{${elemento_resultado}}">
+        {${contenido_resultado}}
+    </resultado>
+    </template>
+    
+    <!-- Template para crear una consulta de agrupación en XQuery -->
+    <template autoinsert="true" context="xml" deleted="false" description="Plantilla para crear consultas de agrupación en XQuery" enabled="true" name="xqGroupBy">
+xquery version "3.1";
+
+(: ${descripcion_consulta} :)
+for $${var_agrupacion} in distinct-values(doc("${ruta_archivo}")//#{elemento}/${campo_agrupacion})
+let $${var_grupo} := doc("${ruta_archivo}")//#{elemento}[${campo_agrupacion} = $${var_agrupacion}]
+return 
+    <resultado> <!-- ${elemento_resultado} -->
+        <agrupacion> <!-- ${campo_agrupacion} -->
+            {$${var_agrupacion}}
+        </agrupacion>
+        <grupo>
+        {
+            for $${var_item} in $${var_grupo}
+            return 
+                <item> <!-- ${item} -->
+                    ${contenido_item}
+                </item>
+        }
+        </grupo>
+    </resultado> <!-- ${elemento_resultado} -->
+    </template>
+    
+    <!-- Template de colección completa para sistema académico -->
+    <template autoinsert="true" context="xml" deleted="false" description="Colección completa de consultas XQuery para sistema académico" enabled="true" name="xqSistemaAcademico">
+(: 1. Mostrar nombres de universidades :)
+xquery version "3.1"; 
+for $a in doc("/sistemaacademico/universidades.xml")//universidad/nombre
+return <nombre>{$a/text()}</nombre>
+
+(: 2. Mostrar departamentos con su universidad :)
+xquery version "3.1";
+for $d in doc("parcial/departamentos.xml")//departamento
+for $u in doc("parcial/universidades.xml")//universidad[@id=$d/@universidad_id]
+return
+    <info>
+        <nombreUni>{$u/nombre}</nombreUni>
+        <nombreDpto>{$d/nombre}</nombreDpto>
+    </info>
+
+(: 3. Mostrar cursos y el nombre del profesor que los imparte :)
+xquery version "3.1"; 
+for $curso in //curso
+let $profesor := //profesor[@id = $curso/@profesor_id]
+return 
+  <curso>
+    <nombre>{ $curso/nombre/text() }</nombre>
+    <profesor>{ $profesor/nombre/text() }</profesor>
+  </curso>
+
+(: 4. Mostrar nombres de estudiantes y universidad a la que pertenecen :)
+xquery version "3.1"; 
+for $estudiante in //estudiante
+let $universidad := //universidad[@id = $estudiante/@universidad_id]
+return  
+  <estudiante>
+    <nombre>{ $estudiante/nombre/text() }</nombre>
+    <universidad>{ $universidad/nombre/text() }</universidad>
+  </estudiante>
+
+(: 5. Mostrar nombres de estudiantes inscritos en el curso "Matemáticas I" :)
+xquery version "3.1";
+for $inscripcion in //inscripcion
+let $estudiante := //estudiante[@id = $inscripcion/@estudiante_id]
+let $curso := //curso[@id = $inscripcion/@curso_id]
+where $curso/nombre = "Matemáticas I"
+return  
+  <estudiante>
+    <nombre>{ $estudiante/nombre/text()}</nombre>
+  </estudiante>
+
+(: 6. Mostrar cursos impartidos por profesores del departamento "Ingeniería" :)
+xquery version "3.1";
+for $curso in //curso
+let $profesor :=//profesor[@id = $curso/@profesor_id]
+let $departamento :=//departamento[@id=$profesor/@departamento_id]
+where $departamento/nombre = "Ingeniería"
+return 
+    <curso>
+        <nombre> {$curso/nombre/text()} </nombre>
+    </curso>
+    </template>
+</templates>

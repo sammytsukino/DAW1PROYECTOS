@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+    <!-- Template para crear una clase exportadora de datos de base de datos a XML -->
+    <template autoinsert="true" context="java" deleted="false" description="Crear una clase exportadora de datos a XML" enabled="true" name="xmlExporter">
+package ${paquete};
+
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.*;
+
+public class Exportador${Proyecto}XML {
+
+    public static void exportar() {
+        String url = "${jdbc_url}";
+        String user = "${jdbc_user}";
+        String password = "${jdbc_password}";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+
+            Element root = doc.createElement("${raiz}");
+            doc.appendChild(root);
+
+            ${exportar_tablas}
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.CDATA_SECTION_ELEMENTS, "true false");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("${ruta_salida}"));
+            transformer.transform(source, result);
+
+            System.out.println("Exportación completada correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void exportarTabla(Document doc, Connection conn, Element contenedor, String tabla, String[] campos) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM " + tabla);
+
+        while (rs.next()) {
+            Element item = doc.createElement(tabla);
+            for (String campo : campos) {
+                Element nodo = doc.createElement(campo);
+                String valor = rs.getString(campo);
+                ${tratamiento_valores}
+                nodo.appendChild(doc.createTextNode(valor));
+                item.appendChild(nodo);
+            }
+            contenedor.appendChild(item);
+        }
+    }
+
+    public static void main(String[] args) {
+        exportar();
+    }
+}
+    </template>
+    
+    <!-- Template para exportar una tabla específica a XML -->
+    <template autoinsert="true" context="java" deleted="false" description="Código para exportar una tabla específica a XML" enabled="true" name="xmlExportTable">
+Element contenedor${Entidad} = doc.createElement("${entidades}");
+root.appendChild(contenedor${Entidad});
+exportarTabla(doc, conn, contenedor${Entidad}, "${entidad}", new String[]{${campos}});
+    </template>
+    
+    <!-- Template para tratamiento especial de valores booleanos -->
+    <template autoinsert="true" context="java" deleted="false" description="Código para tratamiento especial de valores booleanos en exportación XML" enabled="true" name="xmlTreatBooleanValue">
+if ("${campo_booleano}".equals(campo)) {
+    valor = "1".equals(valor) ? "true" : "false";
+}
+    </template>
+    
+    <!-- Template para tratamiento especial de valores de fecha -->
+    <template autoinsert="true" context="java" deleted="false" description="Código para tratamiento especial de valores de fecha en exportación XML" enabled="true" name="xmlTreatDateValue">
+if ("${campo_fecha}".equals(campo)) {
+    // Formatear fecha si es necesario
+    if (valor != null) {
+        try {
+            java.sql.Date fecha = rs.getDate(campo);
+            valor = fecha.toString(); // Formato ISO (YYYY-MM-DD)
+        } catch (SQLException e) {
+            System.err.println("Error al procesar fecha: " + e.getMessage());
+        }
+    }
+}
+    </template>
+    
+    <!-- Template para exportador de librería completo -->
+    <template autoinsert="true" context="java" deleted="false" description="Exportador completo para el proyecto de librería" enabled="true" name="libreriaXmlExporter">
+package libreria;
+
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.*;
+
+public class ExportadorLibreriaXML {
+
+    public static void exportar() {
+        String url = "jdbc:mariadb://localhost:3306/libreria";
+        String user = "root";
+        String password = "";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+
+            Element root = doc.createElement("libreria");
+            doc.appendChild(root);
+
+            Element contenedorGeneros = doc.createElement("generos");
+            root.appendChild(contenedorGeneros);
+            exportarTabla(doc, conn, contenedorGeneros, "genero", new String[]{"id_genero", "nombre_genero"});
+
+            Element contenedorAutores = doc.createElement("autores");
+            root.appendChild(contenedorAutores);
+            exportarTabla(doc, conn, contenedorAutores, "autor", new String[]{"id_autor", "nombre_autor", "nacionalidad"});
+
+            Element contenedorLibros = doc.createElement("libros");
+            root.appendChild(contenedorLibros);
+            exportarTabla(doc, conn, contenedorLibros, "libro", new String[]{"id_libro", "titulo", "anio_publicacion", "id_autor", "id_genero"});
+
+            Element contenedorPrestamos = doc.createElement("prestamos");
+            root.appendChild(contenedorPrestamos);
+            exportarTabla(doc, conn, contenedorPrestamos, "prestamo", new String[]{"id_libro", "fecha_prestamo", "devuelto"});
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.CDATA_SECTION_ELEMENTS, "true false");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("resources/exportado_libreria.xml"));
+            transformer.transform(source, result);
+
+            System.out.println("Exportación completada correctamente.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void exportarTabla(Document doc, Connection conn, Element contenedor, String tabla, String[] campos) throws SQLException {
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM " + tabla);
+
+        while (rs.next()) {
+            Element item = doc.createElement(tabla);
+            for (String campo : campos) {
+                Element nodo = doc.createElement(campo);
+                String valor = rs.getString(campo);
+                if ("devuelto".equals(campo)) {
+                    valor = "1".equals(valor) ? "true" : "false";
+                }
+                nodo.appendChild(doc.createTextNode(valor));
+                item.appendChild(nodo);
+            }
+            contenedor.appendChild(item);
+        }
+    }
+
+    public static void main(String[] args) {
+        exportar();
+    }
+}
+    </template>
+    
+    <!-- Template para método de exportación avanzado con tratamiento de tipos -->
+    <template autoinsert="true" context="java" deleted="false" description="Método de exportación avanzado con tratamiento de diferentes tipos de datos" enabled="true" name="xmlAdvancedExportMethod">
+private static void exportarTablaAvanzado(Document doc, Connection conn, Element contenedor, String tabla, 
+                                        String[] campos, String[] tipos) throws SQLException {
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT * FROM " + tabla);
+
+    while (rs.next()) {
+        Element item = doc.createElement(tabla);
+        for (int i = 0; i &lt; campos.length; i++) {
+            Element nodo = doc.createElement(campos[i]);
+            String valor = null;
+            
+            switch (tipos[i].toLowerCase()) {
+                case "string":
+                    valor = rs.getString(campos[i]);
+                    break;
+                case "int":
+                    valor = String.valueOf(rs.getInt(campos[i]));
+                    break;
+                case "float":
+                case "double":
+                    valor = String.valueOf(rs.getDouble(campos[i]));
+                    break;
+                case "date":
+                    java.sql.Date fecha = rs.getDate(campos[i]);
+                    valor = fecha != null ? fecha.toString() : "";
+                    break;
+                case "boolean":
+                    boolean bool = rs.getBoolean(campos[i]);
+                    valor = bool ? "true" : "false";
+                    break;
+                default:
+                    valor = rs.getString(campos[i]);
+            }
+            
+            if (rs.wasNull()) {
+                valor = "";
+            }
+            
+            nodo.appendChild(doc.createTextNode(valor != null ? valor : ""));
+            item.appendChild(nodo);
+        }
+        contenedor.appendChild(item);
+    }
+}
+    </template>
+    
+    <!-- Template para método que verifica si hay datos que exportar -->
+    <template autoinsert="true" context="java" deleted="false" description="Método para verificar si hay datos para exportar" enabled="true" name="xmlCheckDataToExport">
+private static boolean hayDatosParaExportar(Connection conn, String tabla) throws SQLException {
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM " + tabla);
+    if (rs.next()) {
+        return rs.getInt(1) > 0;
+    }
+    return false;
+}
+    </template>
+    
+    <!-- Template para configuración avanzada del transformador XML -->
+    <template autoinsert="true" context="java" deleted="false" description="Configuración avanzada del transformador XML" enabled="true" name="xmlAdvancedTransformerConfig">
+TransformerFactory transformerFactory = TransformerFactory.newInstance();
+Transformer transformer = transformerFactory.newTransformer();
+transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+DOMSource source = new DOMSource(doc);
+StreamResult result = new StreamResult(new File("${ruta_archivo}"));
+transformer.transform(source, result);
+    </template>
+</templates>
