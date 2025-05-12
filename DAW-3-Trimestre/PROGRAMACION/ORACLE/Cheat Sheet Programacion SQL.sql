@@ -149,3 +149,25 @@ proyectos lista_proyectos
 CREATE TABLE empleados_tabla of empleado
 NESTED TABLE proyectos STORE AS proyectos_tabla;
 /
+
+
+
+------- Creamos objeto ------------
+
+CREATE OR REPLACE TYPE direccion_obj AS OBJECT (
+calle VARCHAR2(20),
+ciudad VARCHAR2(20),
+codigo_postal VARCHAR2(20)
+);
+/
+
+---- Creamos tabla simple con objeto ------
+
+CREATE TABLE empleados(
+id_empleado NUMBER PRIMARY KEY,
+nombre VARCHAR2(20),
+direccion direccion_obj
+);
+
+
+
