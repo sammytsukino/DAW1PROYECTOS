@@ -1,0 +1,23 @@
+-- 1. Tipo de objeto para Telefono
+CREATE OR REPLACE TYPE telefono_obj AS OBJECT (
+    tipo   VARCHAR2(50),
+    numero VARCHAR2(20)
+);
+/
+
+-- 2. Colección (lista) de teléfonos
+CREATE OR REPLACE TYPE lista_telefonos AS TABLE OF telefono_obj;
+/
+
+-- 3. Tipo de objeto para Cliente
+CREATE OR REPLACE TYPE cliente_obj AS OBJECT (
+    id_cliente NUMBER,
+    nombre     VARCHAR2(100),
+    telefonos  lista_telefonos
+);
+/
+
+-- 4. Tabla para almacenar clientes usando el tipo cliente_obj
+CREATE TABLE clientes_tabla OF cliente_obj
+NESTED TABLE telefonos STORE AS telefonos_tabla;
+/
