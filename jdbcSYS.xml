@@ -1,0 +1,142 @@
+<templates>
+    <!-- Oracle - Insertar PrestamoDAO -->
+    <template name="Oracle - Insertar PrestamoDAO" description="Insertar préstamo (CREATE) en Oracle" context="java" enabled="true" autoInsert="true">
+        <![CDATA[
+public void insertarPrestamo(int id, java.sql.Date fecha, int idSocio, String nombreSocio, String direccion,
+                             String isbn, String titulo, int anio, int idAutor, String nombreAutor, String nacionalidad) {
+    String sql = "INSERT INTO prestamos_obj VALUES (?, ?, tipo_socio(?,?,?), tipo_libro(?,?,?,tipo_autor(?,?,?)))";
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        stmt.setDate(2, fecha);
+        stmt.setInt(3, idSocio);
+        stmt.setString(4, nombreSocio);
+        stmt.setString(5, direccion);
+        stmt.setString(6, isbn);
+        stmt.setString(7, titulo);
+        stmt.setInt(8, anio);
+        stmt.setInt(9, idAutor);
+        stmt.setString(10, nombreAutor);
+        stmt.setString(11, nacionalidad);
+        stmt.executeUpdate();
+        System.out.println("Préstamo insertado.");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+        ]]>
+    </template>
+
+    <!-- Oracle - Listar PrestamosDAO -->
+    <template name="Oracle - Listar PrestamosDAO" description="Listar todos los préstamos (READ) desde Oracle" context="java" enabled="true" autoInsert="true">
+        <![CDATA[
+public void listarPrestamos() {
+    String sql = "SELECT pre.id_prestamo, pre.fecha_prestamo, pre.socio.id_socio, pre.socio.nombre, pre.socio.direccion, pre.libro.isbn, pre.libro.titulo, pre.libro.anio, pre.libro.autor.id_autor, pre.libro.autor.nombre, pre.libro.autor.nacionalidad FROM prestamos_obj pre";
+    try (Connection conn = Conexion.conectar();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            System.out.println("ID: " + rs.getInt(1) +
+                               ", Fecha: " + rs.getDate(2) +
+                               ", IDSocio: " + rs.getInt(3) +
+                               ", NombreSocio: " + rs.getString(4) +
+                               ", DireccSocio: " + rs.getString(5) +
+                               ", ISBNLibro: " + rs.getString(6) +
+                               ", TituloLibro: " + rs.getString(7) +
+                               ", AnioLibro: " + rs.getInt(8) +
+                               ", IDAutor: " + rs.getInt(9) +
+                               ", NombreAutor: " + rs.getString(10) +
+                               ", NacionAutor: " + rs.getString(11));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+        ]]>
+    </template>
+
+    <!-- Oracle - Buscar Prestamo por ID -->
+    <template name="Oracle - Buscar Prestamo por ID" description="Buscar préstamo (READ BY ID) en Oracle" context="java" enabled="true" autoInsert="true">
+        <![CDATA[
+public void buscarPrestamoPorId(int id) {
+    String sql = "SELECT pre.id_prestamo, pre.fecha_prestamo, pre.socio.id_socio, pre.socio.nombre, pre.socio.direccion, pre.libro.isbn, pre.libro.titulo, pre.libro.anio, pre.libro.autor.id_autor, pre.libro.autor.nombre, pre.libro.autor.nacionalidad FROM prestamos_obj pre WHERE pre.id_prestamo = ?";
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        try (ResultSet rs = stmt.executeQuery()) {
+            if (rs.next()) {
+                System.out.println("ID: " + rs.getInt(1) +
+                                   ", Fecha: " + rs.getDate(2) +
+                                   ", IDSocio: " + rs.getInt(3) +
+                                   ", NombreSocio: " + rs.getString(4) +
+                                   ", DireccSocio: " + rs.getString(5) +
+                                   ", ISBNLibro: " + rs.getString(6) +
+                                   ", TituloLibro: " + rs.getString(7) +
+                                   ", AnioLibro: " + rs.getInt(8) +
+                                   ", IDAutor: " + rs.getInt(9) +
+                                   ", NombreAutor: " + rs.getString(10) +
+                                   ", NacionAutor: " + rs.getString(11));
+            } else {
+                System.out.println("No se encontró préstamo con ID: " + id);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+        ]]>
+    </template>
+
+    <!-- Oracle - Actualizar Prestamo por ID -->
+    <template name="Oracle - Actualizar Prestamo por ID" description="Actualizar préstamo (UPDATE BY ID) en Oracle" context="java" enabled="true" autoInsert="true">
+        <![CDATA[
+public void actualizarPrestamoPorId(int id, java.sql.Date fecha, int idSocio, String nombreSocio, String direccion,
+                                    String isbn, String titulo, int anio, int idAutor, String nombreAutor, String nacionalidad) {
+    String sql = "UPDATE prestamos_obj SET fecha_prestamo = ?, socio = tipo_socio(?,?,?), libro = tipo_libro(?,?,?,tipo_autor(?,?,?)) WHERE id_prestamo = ?";
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setDate(1, fecha);
+        stmt.setInt(2, idSocio);
+        stmt.setString(3, nombreSocio);
+        stmt.setString(4, direccion);
+        stmt.setString(5, isbn);
+        stmt.setString(6, titulo);
+        stmt.setInt(7, anio);
+        stmt.setInt(8, idAutor);
+        stmt.setString(9, nombreAutor);
+        stmt.setString(10, nacionalidad);
+        stmt.setInt(11, id);
+        int filas = stmt.executeUpdate();
+        if (filas > 0) {
+            System.out.println("Préstamo actualizado.");
+        } else {
+            System.out.println("No se encontró préstamo con ID " + id);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+        ]]>
+    </template>
+
+    <!-- Oracle - Eliminar Prestamo por ID -->
+    <template name="Oracle - Eliminar Prestamo por ID" description="Eliminar préstamo (DELETE BY ID) en Oracle" context="java" enabled="true" autoInsert="true">
+        <![CDATA[
+public void eliminarPrestamoPorId(int id) {
+    String sql = "DELETE FROM prestamos_obj WHERE id_prestamo = ?";
+    try (Connection conn = Conexion.conectar();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        int filas = stmt.executeUpdate();
+        if (filas > 0) {
+            System.out.println("Préstamo eliminado.");
+        } else {
+            System.out.println("No se encontró préstamo con ID " + id);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+        ]]>
+    </template>
+</templates>
