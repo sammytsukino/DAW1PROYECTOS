@@ -1,0 +1,14 @@
+<cursos>
+  <curso>
+    <id>200</id>
+    <nombre>Bases de Datos</nombre>
+    <id_profesor>100</id_profesor>
+    <id_departamento>10</id_departamento>
+  </curso>
+  <curso>
+    <id>201</id>
+    <nombre>Historia Contemporánea</nombre>
+    <id_profesor>101</id_profesor>
+    <id_departamento>20</id_departamento>
+  </curso>
+</cursos>

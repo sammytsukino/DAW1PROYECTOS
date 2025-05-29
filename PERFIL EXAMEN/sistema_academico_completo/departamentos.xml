@@ -1,0 +1,12 @@
+<departamentos>
+  <departamento>
+    <id>10</id>
+    <nombre>Ingeniería</nombre>
+    <id_universidad>1</id_universidad>
+  </departamento>
+  <departamento>
+    <id>20</id>
+    <nombre>Ciencias Sociales</nombre>
+    <id_universidad>2</id_universidad>
+  </departamento>
+</departamentos>

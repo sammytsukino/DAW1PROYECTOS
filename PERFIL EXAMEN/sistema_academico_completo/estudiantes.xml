@@ -1,0 +1,20 @@
+<estudiantes>
+  <estudiante>
+    <id>1000</id>
+    <nombre>Ana Torres</nombre>
+    <edad>20</edad>
+    <id_universidad>1</id_universidad>
+  </estudiante>
+  <estudiante>
+    <id>1001</id>
+    <nombre>Luis López</nombre>
+    <edad>22</edad>
+    <id_universidad>2</id_universidad>
+  </estudiante>
+  <estudiante>
+    <id>1002</id>
+    <nombre>Elena Díaz</nombre>
+    <edad>21</edad>
+    <id_universidad>1</id_universidad>
+  </estudiante>
+</estudiantes>

@@ -1,0 +1,26 @@
+<inscripciones>
+  <inscripcion>
+    <id>1</id>
+    <id_estudiante>1000</id_estudiante>
+    <id_curso>200</id_curso>
+    <semestre>2025-1</semestre>
+  </inscripcion>
+  <inscripcion>
+    <id>2</id>
+    <id_estudiante>1001</id_estudiante>
+    <id_curso>201</id_curso>
+    <semestre>2025-1</semestre>
+  </inscripcion>
+  <inscripcion>
+    <id>3</id>
+    <id_estudiante>1002</id_estudiante>
+    <id_curso>200</id_curso>
+    <semestre>2025-2</semestre>
+  </inscripcion>
+  <inscripcion>
+    <id>4</id>
+    <id_estudiante>1000</id_estudiante>
+    <id_curso>201</id_curso>
+    <semestre>2025-2</semestre>
+  </inscripcion>
+</inscripciones>

@@ -1,0 +1,15 @@
+- 1. Estudiantes con nombre y universidad 
+- 2. Cursos con su profesor 
+- 3. Inscripción con estudiante y curso 
+- 4. Profesor con su departamento 
+- 5. Curso con su departamento 
+- 6. Inscripción con nombre del estudiante 
+- 7. Cursos impartidos por profesores de Matemáticas 
+- 8. Estudiantes con edad mayor a 20 
+- 9. Profesores llamados "Miguel Ángel Conde" 
+- 10. Estudiantes que pertenecen a universidad 1 
+- 11. Cursos dictados en el departamento 10 
+- 12. Profesores del departamento 10 
+- 13. Inscripciones del semestre 2025-1 
+- 14. Cursos impartidos por Laura García 
+- 15. Estudiantes llamados "Ana Berlita" 

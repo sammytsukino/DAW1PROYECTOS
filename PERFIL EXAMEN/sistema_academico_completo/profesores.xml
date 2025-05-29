@@ -1,0 +1,20 @@
+<profesores>
+  <profesor>
+    <id>100</id>
+    <nombre>Laura García</nombre>
+    <especialidad>Programación</especialidad>
+    <id_departamento>10</id_departamento>
+  </profesor>
+  <profesor>
+    <id>101</id>
+    <nombre>Carlos Pérez</nombre>
+    <especialidad>Historia</especialidad>
+    <id_departamento>20</id_departamento>
+  </profesor>
+  <profesor>
+    <id>102</id>
+    <nombre>Marta Ruiz</nombre>
+    <especialidad>Matemáticas</especialidad>
+    <id_departamento>10</id_departamento>
+  </profesor>
+</profesores>

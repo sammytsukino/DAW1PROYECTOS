@@ -1,0 +1,12 @@
+<universidades>
+  <universidad>
+    <id>1</id>
+    <nombre>Universidad Central</nombre>
+    <ciudad>Madrid</ciudad>
+  </universidad>
+  <universidad>
+    <id>2</id>
+    <nombre>Instituto Tecnológico</nombre>
+    <ciudad>Barcelona</ciudad>
+  </universidad>
+</universidades>
