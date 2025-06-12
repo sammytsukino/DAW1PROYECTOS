@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+    <!-- Template para DAO básico SQL -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Genera una clase DAO básica con operaciones CRUD SQL" 
+        enabled="true" 
+        name="dao_crud_basic_sql">
+        <pattern>package ${package_name};
+import java.sql.*;
+import java.util.*;
+
+public class ${entity_name}DAO {
+    
+    // Insertar ${entity_name_lower}
+    public void insertar${entity_name}(${entity_name} entity) {
+        String sql = "INSERT INTO ${table_name} VALUES (${cursor})";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Configurar parámetros aquí
+            stmt.executeUpdate();
+            System.out.println("${entity_name} insertado correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al insertar ${entity_name_lower}: " + e.getMessage());
+        }
+    }
+    
+    // Actualizar ${entity_name_lower}
+    public void actualizar${entity_name}(${entity_name} entity) {
+        String sql = "UPDATE ${table_name} SET campo=? WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // Configurar parámetros aquí
+            int filasAfectadas = stmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("${entity_name} actualizado correctamente.");
+            } else {
+                System.out.println("No se encontró el ${entity_name_lower}");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar ${entity_name_lower}: " + e.getMessage());
+        }
+    }
+    
+    // Listar todos los ${entity_name_lower}s
+    public List&lt;${entity_name}&gt; listar${entity_name}() {
+        List&lt;${entity_name}&gt; lista = new ArrayList&lt;&gt;();
+        String sql = "SELECT * FROM ${table_name}";
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                // Crear objeto ${entity_name} y agregarlo a la lista
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al listar ${entity_name_lower}s: " + e.getMessage());
+        }
+        return lista;
+    }
+    
+    // Eliminar ${entity_name_lower}
+    public void eliminar${entity_name}(int id) {
+        String sql = "DELETE FROM ${table_name} WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int filasAfectadas = stmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("${entity_name} eliminado correctamente.");
+            } else {
+                System.out.println("No se encontró el ${entity_name_lower} con ID: " + id);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar ${entity_name_lower}: " + e.getMessage());
+        }
+    }
+    
+    // Buscar ${entity_name_lower} por ID
+    public ${entity_name} buscar${entity_name}PorId(int id) {
+        String sql = "SELECT * FROM ${table_name} WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                // Crear y retornar objeto ${entity_name}
+                return null; // Reemplazar con el objeto creado
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al buscar ${entity_name_lower}: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    // Verificar si existe ${entity_name_lower}
+    public boolean existe${entity_name}(int id) {
+        String sql = "SELECT COUNT(*) FROM ${table_name} WHERE id=?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al verificar existencia: " + e.getMessage());
+        }
+        return false;
+    }
+}</pattern>
+    </template>
+    
+    <!-- Template para método de inserción SQL -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Método de inserción SQL para DAO" 
+        enabled="true" 
+        name="dao_insert_sql">
+        <pattern>public void insertar${entity_name}(${entity_name} entity) {
+    String sql = "INSERT INTO ${table_name} VALUES (${cursor})";
+    try (Connection conn = DBConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+        // Configurar parámetros aquí
+        stmt.executeUpdate();
+        System.out.println("${entity_name} insertado correctamente.");
+    } catch (SQLException e) {
+        System.out.println("Error al insertar: " + e.getMessage());
+    }
+}</pattern>
+    </template>
+    
+    <!-- Template para método de actualización SQL -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Método de actualización SQL para DAO" 
+        enabled="true" 
+        name="dao_update_sql">
+        <pattern>public void actualizar${entity_name}(${entity_name} entity) {
+    String sql = "UPDATE ${table_name} SET campo=? WHERE id=?";
+    try (Connection conn = DBConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+        // Configurar parámetros aquí
+        int filasAfectadas = stmt.executeUpdate();
+        if (filasAfectadas > 0) {
+            System.out.println("${entity_name} actualizado correctamente.");
+        } else {
+            System.out.println("No se encontró el registro");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al actualizar: " + e.getMessage());
+    }
+}</pattern>
+    </template>
+    
+    <!-- Template para método de eliminación SQL -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Método de eliminación SQL para DAO" 
+        enabled="true" 
+        name="dao_delete_sql">
+        <pattern>public void eliminar${entity_name}(int id) {
+    String sql = "DELETE FROM ${table_name} WHERE id=?";
+    try (Connection conn = DBConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        int filasAfectadas = stmt.executeUpdate();
+        if (filasAfectadas > 0) {
+            System.out.println("Registro eliminado correctamente.");
+        } else {
+            System.out.println("No se encontró el registro con ID: " + id);
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al eliminar: " + e.getMessage());
+    }
+}</pattern>
+    </template>
+    
+    <!-- Template para método de búsqueda -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Método de búsqueda por ID para DAO" 
+        enabled="true" 
+        name="dao_find_by_id">
+        <pattern>public ${entity_name} buscar${entity_name}PorId(int id) {
+    String sql = "SELECT * FROM ${table_name} WHERE id=?";
+    try (Connection conn = DBConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            ${cursor}
+            // Crear y retornar objeto
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al buscar: " + e.getMessage());
+    }
+    return null;
+}</pattern>
+    </template>
+    
+    <!-- Template para método de listado -->
+    <template 
+        autoinsert="false" 
+        context="java" 
+        deleted="false" 
+        description="Método de listado para DAO" 
+        enabled="true" 
+        name="dao_list_all">
+        <pattern>public List&lt;${entity_name}&gt; listar${entity_name}() {
+    List&lt;${entity_name}&gt; lista = new ArrayList&lt;&gt;();
+    String sql = "SELECT * FROM ${table_name}";
+    try (Connection conn = DBConnection.getConnection();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+        while (rs.next()) {
+            ${cursor}
+            // Crear objeto y agregarlo a la lista
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al listar: " + e.getMessage());
+    }
+    return lista;
+}</pattern>
+    </template>
+</templates>
